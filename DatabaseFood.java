@@ -1,46 +1,50 @@
 
 /**
- * Write a description of class DatabaseFood here.
+ * Database Food class is the class to generate all possible food then collected
+ * in this class
  *
  * @author Muhammad Sulton Tauhid
  * @version February 27th, 2020
  */
-public class DatabaseFood
-{
+public class DatabaseFood {
+    // Instances variable
     private String[] listFood;
 
     /**
      * Constructor for objects of class DatabaseFood
      */
-    public DatabaseFood()
-    {
-        
+    public DatabaseFood() {
+
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * This method will check whether the current object of food exist. If it
+     * exists, the method will return boolean value of true
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param food
+     * @return true
      */
-    public boolean addFood (Food food)
-    {
+    public boolean addFood(Food food) {
         return true;
     }
 
     /**
+     * This method will check whether the current object of food exist. If it
+     * exists, the method will return boolean value of true
      * 
+     * @param food
+     * @return true
      */
-    public boolean removeFood(Food food)
-    {
+    public boolean removeFood(Food food) {
         return true;
     }
 
     /**
+     * This method will show all the food after being collected to database
      * 
+     * @return listFood
      */
-    public String[] getListFood()
-    {
+    public String[] getListFood() {
         return listFood;
     }
 }

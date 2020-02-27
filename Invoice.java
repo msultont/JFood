@@ -1,12 +1,13 @@
 
 /**
- * Write a description of class Customer here.
+ * This class will generate the invoice receipt to the customer after they have
+ * finished doing transaction in JFood restaurant.
  *
  * @author Muhammad Sulton Tauhid
  * @version February 27th, 2020
  */
-public class Invoice
-{
+public class Invoice {
+    // Instances Variables
     private int id;
     private int idFood;
     private String date;
@@ -16,8 +17,7 @@ public class Invoice
     /**
      * Constructor for objects of class Invoice
      */
-    public Invoice(int id, int idFood, String date, Customer customer, int totalPrice)
-    {
+    public Invoice(int id, int idFood, String date, Customer customer, int totalPrice) {
         this.id = id;
         this.idFood = idFood;
         this.date = date;
@@ -26,94 +26,107 @@ public class Invoice
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * This method will return the id of the invoice
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return id
      */
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
     /**
+     * This method will return the id of the food of the invoice
      * 
+     * @return idFood
      */
-    public int getIdFood() 
-    {
+    public int getIdFood() {
         return idFood;
     }
 
     /**
+     * This method will return the date of the invoice come out
      * 
+     * @return date
      */
-    public String getDate()
-    {
+    public String getDate() {
         return date;
     }
 
     /**
+     * This method will return the total price all of the transaction in the invoice
      * 
+     * @return totalPrice
      */
-    public int getTotalPrice()
-    {
+    public int getTotalPrice() {
         return totalPrice;
     }
 
     /**
+     * This method will return the spesific customer in the invoice. This will
+     * return Customer data types which means it will call the object of the
+     * Customer
      * 
+     * @return customer
      */
-    public Customer getCustomer()
-    {
+    public Customer getCustomer() {
         return customer;
     }
 
     /**
+     * This method will reasign the id of the invoice
      * 
+     * @param id
      */
-    public void setId(int id)
-    {
+    public void setId(int id) {
         this.id = id;
     }
 
     /**
+     * This method will reasign the id of the food of the invoice
      * 
+     * @param idFood
      */
-    public void setIdFood(int idFood)
-    {
+    public void setIdFood(int idFood) {
         this.idFood = idFood;
     }
 
     /**
+     * This method will reasign the date of the invoice come out
      * 
+     * @param date
      */
-    public void setDate(String date)
-    {
+    public void setDate(String date) {
         this.date = date;
     }
 
     /**
+     * This method will reassign the total price of all transaction in the invoice
      * 
+     * @param totalPrice
      */
-    public void setTotalPrice(int totalPrice)
-    {
+    public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
 
     /**
+     * This method will reassign the customer in the invoice. This will call another
+     * object to change the current customer
      * 
+     * @param customer
      */
-    public void setCustomer(Customer customer)
-    {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
     /**
-     * 
+     * This method will print all the variables data to the terminal
      */
-    public void printData()
-    {
-
+    public void printData() {
+        System.out.println(id);
+        System.out.println(idFood);
+        System.out.println(date);
+        System.out.println(totalPrice);
+        System.out.println(customer);
     }
 
 }

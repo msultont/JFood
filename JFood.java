@@ -1,15 +1,12 @@
 
 /**
- * Write a description of class JFood here.
+ * This is the main restaurant of JFood. Every object creation is created here
+ * and all process is focused in this one class.
  *
  * @author Muhammad Sulton Tauhid
  * @version February 27th, 2020
  */
 public class JFood {
-    /**
-     * 
-     * @param args
-     */
     public static void main(String[] args) {
         Location location1 = new Location("Tangerang", "Banten", "Pusat");
 
@@ -21,10 +18,11 @@ public class JFood {
 
         Invoice invoice1 = new Invoice(1, 01, "27 Februari 2020", customer1, 100000);
 
+        location1.printData();
+        seller1.printData();
         food1.printData();
-
-        location1.setCity("Tangerang");
-        location1.getCity();
+        customer1.printData();
+        invoice1.printData();
     }
 
 }

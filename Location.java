@@ -1,12 +1,12 @@
 
 /**
- * Write a description of class Location here.
+ * Location class will generate the spesific location for JFood restaurant.
  *
  * @author Muhammad Sulton Tauhid
  * @version February 27th, 2020
  */
-public class Location
-{
+public class Location {
+    // Instances Variables
     private String province;
     private String description;
     private String city;
@@ -14,70 +14,72 @@ public class Location
     /**
      * Constructor for objects of class Location
      */
-    public Location(String city, String province, String description)
-    {
+    public Location(String city, String province, String description) {
         this.city = city;
         this.province = province;
         this.description = description;
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * This method will return the province of the restaurant
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return province
      */
-    public String getProvince()
-    {
+    public String getProvince() {
         return province;
     }
 
     /**
+     * This method will return the city of restaurant
      * 
-     * @return
+     * @return city
      */
-    public String getCity()
-    {
+    public String getCity() {
         return city;
     }
 
     /**
+     * This method will return the description of the restaurant
      * 
+     * @return description
      */
-    public String getDescription()
-    {
+    public String getDescription() {
         return description;
     }
 
     /**
+     * This method will reassign the province of the restaurant
      * 
+     * @param province
      */
-    public void setProvince(String province) 
-    {
+    public void setProvince(String province) {
         this.province = province;
     }
 
     /**
+     * This method will reassign the city of the restaurant
      * 
+     * @param city
      */
-    public void setCity(String city)
-    {
+    public void setCity(String city) {
         this.city = city;
     }
 
     /**
+     * This method will reassign the description of the restaurant
      * 
+     * @param description
      */
-    public void setDescription(String description)
-    {
+    public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * 
+     * This method will print all the variables data to the terminal
      */
-    public void printData()
-    {
-        
+    public void printData() {
+        System.out.println(city);
+        System.out.println(province);
+        System.out.println(description);
     }
 }
