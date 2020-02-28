@@ -1,7 +1,6 @@
 #BlueJ class context
 comment0.target=JFood
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ JFood\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ This\ is\ the\ main\ restaurant\ of\ JFood.\ Every\ object\ creation\ is\ created\ here\r\n\ and\ all\ process\ is\ focused\ in\ this\ one\ class.\r\n\r\n\ @author\ Muhammad\ Sulton\ Tauhid\r\n\ @version\ February\ 27th,\ 2020\r\n
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
-comment1.text=\r\n\ \r\n\ @param\ args\r\n
 numComments=2

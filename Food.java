@@ -120,10 +120,10 @@ public class Food {
      * This method will print all the variables data to the terminal
      */
     public void printData() {
-        System.out.println(id);
+        // System.out.println(id);
         System.out.println(name);
-        System.out.println(seller);
-        System.out.println(price);
+        // System.out.println(seller);
+        // System.out.println(price);
     }
 
 }

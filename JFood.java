@@ -18,11 +18,14 @@ public class JFood {
 
         Invoice invoice1 = new Invoice(1, 01, "27 Februari 2020", customer1, 100000);
 
-        location1.printData();
-        seller1.printData();
+        System.out.println(seller1.getName());
+        seller1.setName("Fathur");
         food1.printData();
-        customer1.printData();
-        invoice1.printData();
+        System.out.println(seller1.getName());
+        DatabaseSeller.addSeller(seller1);
+
+        // customer1.printData();
+        // invoice1.printData();
     }
 
 }

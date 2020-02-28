@@ -1,16 +1,16 @@
 #BlueJ class context
 comment0.target=DatabaseFood
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ DatabaseFood\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Database\ Food\ class\ is\ the\ class\ to\ generate\ all\ possible\ food\ then\ collected\r\n\ in\ this\ class\r\n\r\n\ @author\ Muhammad\ Sulton\ Tauhid\r\n\ @version\ February\ 27th,\ 2020\r\n
 comment1.params=
 comment1.target=DatabaseFood()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ DatabaseFood\r\n
 comment2.params=food
 comment2.target=boolean\ addFood(Food)
-comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n
+comment2.text=\r\n\ This\ method\ will\ check\ whether\ the\ current\ object\ of\ food\ exist.\ If\ it\r\n\ exists,\ the\ method\ will\ return\ boolean\ value\ of\ true\r\n\r\n\ @param\ food\r\n\ @return\ true\r\n
 comment3.params=food
 comment3.target=boolean\ removeFood(Food)
-comment3.text=\r\n\ \r\n
+comment3.text=\r\n\ This\ method\ will\ check\ whether\ the\ current\ object\ of\ food\ exist.\ If\ it\r\n\ exists,\ the\ method\ will\ return\ boolean\ value\ of\ true\r\n\ \r\n\ @param\ food\r\n\ @return\ true\r\n
 comment4.params=
 comment4.target=java.lang.String[]\ getListFood()
-comment4.text=\r\n\ \r\n
+comment4.text=\r\n\ This\ method\ will\ show\ all\ the\ food\ after\ being\ collected\ to\ database\r\n\ \r\n\ @return\ listFood\r\n
 numComments=5
