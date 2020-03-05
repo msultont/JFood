@@ -12,18 +12,18 @@ public class JFood {
 
         Seller seller1 = new Seller(1, "Sulton", "msulton55@gmail", "0822", location1);
 
-        Food food1 = new Food(1, "Jengkol", seller1, 50000, "makanan");
+        Food food1 = new Food(1, "Jengkol", seller1, 50000, FoodCategory.Japanese);
 
-        Customer customer1 = new Customer(1, "Sulton", "Gmail", "123asd", "Februari");
-
-        Invoice invoice1 = new Invoice(1, 01, "27 Februari 2020", customer1, 100000);
-
-        System.out.println(seller1.getName());
-        seller1.setName("Fathur");
         food1.printData();
-        System.out.println(seller1.getName());
-        DatabaseSeller.addSeller(seller1);
 
+        // Customer customer1 = new Customer(1, "Sulton", "Gmail", "123asd",
+        // "Februari");
+        // Invoice invoice1 = new Invoice(1, 01, "27 Februari 2020", customer1, 100000);
+        // System.out.println(seller1.getName());
+        // seller1.setName("Fathur");
+        // food1.printData();
+        // System.out.println(seller1.getName());
+        // DatabaseSeller.addSeller(seller1);
         // customer1.printData();
         // invoice1.printData();
     }

@@ -8,7 +8,7 @@
  */
 public class DatabaseFood {
     // Instances variable
-    private String[] listFood;
+    private static String[] listFood;
 
     /**
      * Constructor for objects of class DatabaseFood
@@ -24,7 +24,7 @@ public class DatabaseFood {
      * @param food
      * @return true
      */
-    public boolean addFood(Food food) {
+    public static boolean addFood(Food food) {
         return true;
     }
 
@@ -35,8 +35,15 @@ public class DatabaseFood {
      * @param food
      * @return true
      */
-    public boolean removeFood(Food food) {
+    public static boolean removeFood(Food food) {
         return true;
+    }
+
+    /**
+     * 
+     */
+    public static Food getFood() {
+        return null;
     }
 
     /**
@@ -44,7 +51,7 @@ public class DatabaseFood {
      * 
      * @return listFood
      */
-    public String[] getListFood() {
+    public static String[] getListFood() {
         return listFood;
     }
 }

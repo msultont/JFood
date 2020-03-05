@@ -12,12 +12,12 @@ public class Food {
     private String name;
     private Seller seller;
     private int price;
-    private String category;
+    private FoodCategory category;
 
     /**
      * Constructor for objects of class Food
      */
-    public Food(int id, String name, Seller seller, int price, String category) {
+    public Food(int id, String name, Seller seller, int price, FoodCategory category) {
         this.id = id;
         this.name = name;
         this.seller = seller;
@@ -66,7 +66,7 @@ public class Food {
      * 
      * @return category
      */
-    public String getCategory() {
+    public FoodCategory getCategory() {
         return category;
     }
 
@@ -112,7 +112,7 @@ public class Food {
      * 
      * @param category
      */
-    public void setCategory(String category) {
+    public void setCategory(FoodCategory category) {
         this.category = category;
     }
 
@@ -120,10 +120,13 @@ public class Food {
      * This method will print all the variables data to the terminal
      */
     public void printData() {
-        // System.out.println(id);
-        System.out.println(name);
-        // System.out.println(seller);
-        // System.out.println(price);
+        System.out.println("===========FOOD============");
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Seller: " + seller.getName());
+        System.out.println("City: " + seller.getLocation().getCity());
+        System.out.println("Price: " + price);
+        System.out.println("Category: " + category);
     }
 
 }
