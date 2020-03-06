@@ -13,16 +13,19 @@ public class Invoice {
     private String date;
     private int totalPrice;
     private Customer customer;
+    private PaymentType paymentType;
+    private InvoiceStatus status;
 
     /**
      * Constructor for objects of class Invoice
      */
-    public Invoice(int id, int idFood, String date, Customer customer, int totalPrice) {
+    public Invoice(int id, int idFood, String date, Customer customer, int totalPrice, InvoiceStatus status) {
         this.id = id;
         this.idFood = idFood;
         this.date = date;
         this.customer = customer;
         this.totalPrice = totalPrice;
+        this.status = status;
     }
 
     /**
@@ -73,6 +76,22 @@ public class Invoice {
     }
 
     /**
+     * 
+     * @param id
+     */
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    /**
+     * 
+     * @param id
+     */
+    public InvoiceStatus getInvoiceStatus() {
+        return status;
+    }
+
+    /**
      * This method will reasign the id of the invoice
      * 
      * @param id
@@ -119,14 +138,30 @@ public class Invoice {
     }
 
     /**
+     * 
+     */
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    /**
+     * 
+     */
+    public void setInvoiceStatus(InvoiceStatus status) {
+        this.status = status;
+    }
+
+    /**
      * This method will print all the variables data to the terminal
      */
     public void printData() {
-        System.out.println(id);
-        System.out.println(idFood);
-        System.out.println(date);
-        System.out.println(totalPrice);
-        System.out.println(customer);
+        System.out.println("===========INVOICE============");
+        System.out.println("ID: " + id);
+        System.out.println("Food ID: " + idFood);
+        System.out.println("Date: " + date);
+        System.out.println("Customer: " + getCustomer().getName());
+        System.out.println("Total Price: " + totalPrice);
+        System.out.println("Status: " + getInvoiceStatus());
     }
 
 }

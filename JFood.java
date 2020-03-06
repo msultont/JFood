@@ -8,13 +8,18 @@
  */
 public class JFood {
     public static void main(String[] args) {
+        Customer customer1 = new Customer(1, "Sulton", "gmail", "123", "06-03-2002");
+
         Location location1 = new Location("Tangerang", "Banten", "Pusat");
 
         Seller seller1 = new Seller(1, "Sulton", "msulton55@gmail", "0822", location1);
 
         Food food1 = new Food(1, "Jengkol", seller1, 50000, FoodCategory.Japanese);
 
-        food1.printData();
+        Invoice invoice1 = new Invoice(100, food1.getId(), "03-07-2019", customer1, food1.getPrice(),
+                InvoiceStatus.FINISHED);
+
+        invoice1.printData();
 
         // Customer customer1 = new Customer(1, "Sulton", "Gmail", "123asd",
         // "Februari");
