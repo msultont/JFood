@@ -6,26 +6,24 @@
  * @author Muhammad Sulton Tauhid
  * @version February 27th, 2020
  */
-public class Invoice {
+public abstract class Invoice {
     // Instances Variables
     private int id;
-    private int idFood;
+    private Food food;
     private String date;
-    private int totalPrice;
+    protected int totalPrice;
     private Customer customer;
-    private PaymentType paymentType;
-    private InvoiceStatus status;
+    private InvoiceStatus invoiceStatus;
 
     /**
      * Constructor for objects of class Invoice
      */
-    public Invoice(int id, int idFood, String date, Customer customer, int totalPrice, InvoiceStatus status) {
+    public Invoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus) {
         this.id = id;
-        this.idFood = idFood;
+        this.food = food;
         this.date = date;
         this.customer = customer;
-        this.totalPrice = totalPrice;
-        this.status = status;
+        this.invoiceStatus = invoiceStatus;
     }
 
     /**
@@ -43,7 +41,15 @@ public class Invoice {
      * @return idFood
      */
     public int getIdFood() {
-        return idFood;
+        return food.getId();
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public Food getFood() {
+        return food;
     }
 
     /**
@@ -79,16 +85,14 @@ public class Invoice {
      * 
      * @param id
      */
-    public PaymentType getPaymentType() {
-        return paymentType;
-    }
+    public abstract PaymentType getPaymentType();
 
     /**
      * 
      * @param id
      */
     public InvoiceStatus getInvoiceStatus() {
-        return status;
+        return invoiceStatus;
     }
 
     /**
@@ -106,7 +110,7 @@ public class Invoice {
      * @param idFood
      */
     public void setIdFood(int idFood) {
-        this.idFood = idFood;
+        food.setId(idFood);
     }
 
     /**
@@ -123,9 +127,7 @@ public class Invoice {
      * 
      * @param totalPrice
      */
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
+    public abstract void setTotalPrice();
 
     /**
      * This method will reassign the customer in the invoice. This will call another
@@ -140,28 +142,13 @@ public class Invoice {
     /**
      * 
      */
-    public void setPaymentType(PaymentType paymentType) {
-        this.paymentType = paymentType;
-    }
-
-    /**
-     * 
-     */
-    public void setInvoiceStatus(InvoiceStatus status) {
-        this.status = status;
+    public void setInvoiceStatus(InvoiceStatus invoiceStatus) {
+        this.invoiceStatus = invoiceStatus;
     }
 
     /**
      * This method will print all the variables data to the terminal
      */
-    public void printData() {
-        System.out.println("===========INVOICE============");
-        System.out.println("ID: " + id);
-        System.out.println("Food ID: " + idFood);
-        System.out.println("Date: " + date);
-        System.out.println("Customer: " + getCustomer().getName());
-        System.out.println("Total Price: " + totalPrice);
-        System.out.println("Status: " + getInvoiceStatus());
-    }
+    public abstract void printData();
 
 }

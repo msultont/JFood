@@ -11,13 +11,6 @@ public class DatabaseFood {
     private static String[] listFood;
 
     /**
-     * Constructor for objects of class DatabaseFood
-     */
-    public DatabaseFood() {
-
-    }
-
-    /**
      * This method will check whether the current object of food exist. If it
      * exists, the method will return boolean value of true
      *

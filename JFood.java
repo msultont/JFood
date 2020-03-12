@@ -10,16 +10,33 @@ public class JFood {
     public static void main(String[] args) {
         Customer customer1 = new Customer(1, "Sulton", "gmail", "123", "06-03-2002");
 
+        Promo promo1 = new Promo(55, "5msultont5", 10, 20000, true);
+
         Location location1 = new Location("Tangerang", "Banten", "Pusat");
 
         Seller seller1 = new Seller(1, "Sulton", "msulton55@gmail", "0822", location1);
 
-        Food food1 = new Food(1, "Jengkol", seller1, 50000, FoodCategory.Japanese);
+        Food food1 = new Food(1, "Martabak", seller1, 50000, FoodCategory.Japanese);
 
-        Invoice invoice1 = new Invoice(100, food1.getId(), "03-07-2019", customer1, food1.getPrice(),
-                InvoiceStatus.FINISHED);
+        Food food2 = new Food(2, "Gorengan", seller1, 10000, FoodCategory.Rice);
+
+        Food food3 = new Food(3, "Seblak", seller1, 30000, FoodCategory.Snacks);
+
+        CashlessInvoice invoice1 = new CashlessInvoice(100, food1, "03/03/2020", customer1, InvoiceStatus.ONGOING);
+
+        CashlessInvoice invoice2 = new CashlessInvoice(200, food2, "03/03/2020", customer1, InvoiceStatus.ONGOING,
+                promo1);
+
+        CashlessInvoice invoice3 = new CashlessInvoice(300, food3, "03/03/2020", customer1, InvoiceStatus.ONGOING,
+                promo1);
+
+        invoice1.setTotalPrice();
+        invoice2.setTotalPrice();
+        invoice3.setTotalPrice();
 
         invoice1.printData();
+        invoice2.printData();
+        invoice3.printData();
 
         // Customer customer1 = new Customer(1, "Sulton", "Gmail", "123asd",
         // "Februari");

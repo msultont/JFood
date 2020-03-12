@@ -10,13 +10,6 @@ public class DatabaseSeller {
     private static String[] listSeller;
 
     /**
-     * Constructor for objects of class DatabaseSeller
-     */
-    public DatabaseSeller() {
-
-    }
-
-    /**
      * An example of a method - replace this comment with your own
      *
      * @param y a sample parameter for a method
