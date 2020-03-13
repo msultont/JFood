@@ -8,9 +8,9 @@
  */
 public class JFood {
     public static void main(String[] args) {
-        Customer customer1 = new Customer(1, "Sulton", "gmail", "123", "06-03-2002");
+        Customer customer1 = new Customer(1, "JONY JONY", "gmail", "123", "06-03-2002");
 
-        Promo promo1 = new Promo(55, "5msultont5", 10, 20000, true);
+        Promo promo1 = new Promo(55, "5msultont5", 10000, 20000, true);
 
         Location location1 = new Location("Tangerang", "Banten", "Pusat");
 
@@ -18,7 +18,7 @@ public class JFood {
 
         Food food1 = new Food(1, "Martabak", seller1, 50000, FoodCategory.Japanese);
 
-        Food food2 = new Food(2, "Gorengan", seller1, 10000, FoodCategory.Rice);
+        Food food2 = new Food(2, "Gorengan", seller1, 30000, FoodCategory.Rice);
 
         Food food3 = new Food(3, "Seblak", seller1, 30000, FoodCategory.Snacks);
 
@@ -30,13 +30,22 @@ public class JFood {
         CashlessInvoice invoice3 = new CashlessInvoice(300, food3, "03/03/2020", customer1, InvoiceStatus.ONGOING,
                 promo1);
 
-        invoice1.setTotalPrice();
-        invoice2.setTotalPrice();
-        invoice3.setTotalPrice();
+        CashInvoice cInvoice1 = new CashInvoice(4, food1, "3/3/2020", customer1, InvoiceStatus.FINISHED);
 
-        invoice1.printData();
-        invoice2.printData();
-        invoice3.printData();
+        CashInvoice cInvoice2 = new CashInvoice(5, food1, "3/3/2020", customer1, InvoiceStatus.FINISHED, 15000);
+
+        cInvoice1.setTotalPrice();
+        cInvoice2.setTotalPrice();
+        cInvoice1.printData();
+        cInvoice2.printData();
+
+        // invoice1.setTotalPrice();
+        // invoice2.setTotalPrice();
+        // invoice3.setTotalPrice();
+
+        // invoice1.printData();
+        // invoice2.printData();
+        // invoice3.printData();
 
         // Customer customer1 = new Customer(1, "Sulton", "Gmail", "123asd",
         // "Februari");
