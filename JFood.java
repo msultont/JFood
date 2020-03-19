@@ -10,7 +10,7 @@ import java.util.TimeZone;
  */
 public class JFood {
     public static void main(String[] args) {
-        Customer customer1 = new Customer(10, "Sulton", ".msulton55@gmail.com", "sulTon9696",
+        Customer customer1 = new Customer(10, "Sulton", "msulton55@gmail.com", "sultoN6969",
                 new GregorianCalendar(TimeZone.getTimeZone("America/Los_Angeles")));
 
         Customer customer2 = new Customer(20, "Fathur", "msulton55@gmail.com", "Sulton69", 2019, 5, 04);

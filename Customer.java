@@ -1,4 +1,5 @@
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.text.SimpleDateFormat;
 import java.util.regex.*;
 
@@ -30,6 +31,7 @@ public class Customer {
         setEmail(email);
         setPassword(password);
         this.joinDate = joinDate;
+        this.joinDate.add(Calendar.MONTH, -1);
     }
 
     /**
@@ -40,7 +42,7 @@ public class Customer {
         this.name = name;
         setEmail(email);
         setPassword(password);
-        setJoinDate(year, month, dayOfMonth);
+        this.joinDate = new GregorianCalendar(year, month - 1, dayOfMonth);
     }
 
     /**
@@ -166,7 +168,7 @@ public class Customer {
      * 
      */
     public void setJoinDate(int year, int month, int dayOfMonth) {
-        joinDate.set(year, month, dayOfMonth);
+        this.joinDate = new GregorianCalendar(year, month - 1, dayOfMonth);
     }
 
     /**
@@ -175,8 +177,16 @@ public class Customer {
     @Override
     public String toString() {
 
-        return "ID = " + id + "Nama = " + name + "Email = " + email + "Password = " + password + "Join Date = "
-                + ft.format(joinDate.getTime());
+        if (joinDate != null) {
+            String str = ft.format(joinDate.getTime());
+
+            return "ID = " + id + "\n" + "Nama = " + name + "\n" + "Email = " + email + "\n" + "Password = " + password
+                    + "\n" + "Join Date = " + str + "\n";
+        } else {
+            return "ID = " + id + "\n" + "Nama = " + name + "\n" + "Email = " + email + "\n" + "Password = " + password
+                    + "\n";
+        }
+
     }
 
 }
