@@ -119,14 +119,11 @@ public class Food {
     /**
      * This method will print all the variables data to the terminal
      */
-    public void printData() {
-        System.out.println("===========FOOD============");
-        System.out.println("ID: " + id);
-        System.out.println("Name: " + name);
-        System.out.println("Seller: " + seller.getName());
-        System.out.println("City: " + seller.getLocation().getCity());
-        System.out.println("Price: " + price);
-        System.out.println("Category: " + category);
+    @Override
+    public String toString() {
+        return "ID = " + id + "Nama = " + name + "Seller = " + getSeller().getName() + "City = "
+                + getSeller().getLocation().getCity() + "Price = " + getPrice() + "Category = " + getCategory();
+
     }
 
 }

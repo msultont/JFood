@@ -99,7 +99,10 @@ public class Promo {
     /**
      * 
      */
-    public void printData() {
+    @Override
+    public String toString() {
+        return "ID = " + id + "Kode = " + code + "Diskon = " + discount + "Min price = " + minPrice + "Active status = "
+                + getActive();
 
     }
 }

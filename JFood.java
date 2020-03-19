@@ -1,3 +1,5 @@
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 /**
  * This is the main restaurant of JFood. Every object creation is created here
@@ -8,7 +10,12 @@
  */
 public class JFood {
     public static void main(String[] args) {
-        Customer customer1 = new Customer(1, "JONY JONY", "gmail", "123", "06-03-2002");
+        Customer customer1 = new Customer(10, "Sulton", ".msulton55@gmail.com", "sulTon9696",
+                new GregorianCalendar(TimeZone.getTimeZone("America/Los_Angeles")));
+
+        Customer customer2 = new Customer(20, "Fathur", "msulton55@gmail.com", "Sulton69", 2019, 5, 04);
+
+        Customer customer3 = new Customer(30, "Ateng", "atengwewewew@sad.com", "asdqwe123A");
 
         Promo promo1 = new Promo(55, "5msultont5", 10000, 20000, true);
 
@@ -34,10 +41,17 @@ public class JFood {
 
         CashInvoice cInvoice2 = new CashInvoice(5, food1, "3/3/2020", customer1, InvoiceStatus.FINISHED, 15000);
 
-        cInvoice1.setTotalPrice();
-        cInvoice2.setTotalPrice();
-        cInvoice1.printData();
-        cInvoice2.printData();
+        customer1.toString();
+        customer2.toString();
+        customer3.toString();
+        // System.out.println(customer1.toString());
+        // System.out.println(customer2.toString());
+        // System.out.println(customer3.toString());
+
+        // cInvoice1.setTotalPrice();
+        // cInvoice2.setTotalPrice();
+        // cInvoice1.printData();
+        // cInvoice2.printData();
 
         // invoice1.setTotalPrice();
         // invoice2.setTotalPrice();

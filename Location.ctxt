@@ -23,6 +23,6 @@ comment7.params=description
 comment7.target=void\ setDescription(java.lang.String)
 comment7.text=\r\n\ This\ method\ will\ reassign\ the\ description\ of\ the\ restaurant\r\n\ \r\n\ @param\ description\r\n
 comment8.params=
-comment8.target=void\ printData()
+comment8.target=java.lang.String\ toString()
 comment8.text=\r\n\ This\ method\ will\ print\ all\ the\ variables\ data\ to\ the\ terminal\r\n
 numComments=9

@@ -123,12 +123,10 @@ public class Seller {
     /**
      * This method will print all the variables data to the terminal
      */
-    public void printData() {
-        System.out.println(id);
-        System.out.println(name);
-        System.out.println(email);
-        System.out.println(phoneNumber);
-        System.out.println(location);
+    @Override
+    public String toString() {
+        return "ID = " + id + "Name = " + name + "Phone number = " + phoneNumber + "Location = "
+                + getLocation().getProvince() + ", " + getLocation().getCity();
     }
 
 }

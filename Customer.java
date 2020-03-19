@@ -1,3 +1,6 @@
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.regex.*;
 
 /**
  * The Customer class generate an object to create virtual customer for
@@ -15,17 +18,39 @@ public class Customer {
     private String name;
     private String email;
     private String password;
-    private String joinDate;
+    private Calendar joinDate;
+    private SimpleDateFormat ft = new SimpleDateFormat("dd MMMM yyyy");
 
     /**
      * Constructor for objects of class Customer
      */
-    public Customer(int id, String name, String email, String password, String joinDate) {
+    public Customer(int id, String name, String email, String password, Calendar joinDate) {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
+        setEmail(email);
+        setPassword(password);
         this.joinDate = joinDate;
+    }
+
+    /**
+     * 
+     */
+    public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth) {
+        this.id = id;
+        this.name = name;
+        setEmail(email);
+        setPassword(password);
+        setJoinDate(year, month, dayOfMonth);
+    }
+
+    /**
+     * 
+     */
+    public Customer(int id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        setEmail(email);
+        setPassword(password);
     }
 
     /**
@@ -69,7 +94,7 @@ public class Customer {
      * 
      * @return joinDate
      */
-    public String getJoinDate() {
+    public Calendar getJoinDate() {
         return joinDate;
     }
 
@@ -97,7 +122,17 @@ public class Customer {
      * @param email
      */
     public void setEmail(String email) {
-        this.email = email;
+        String pattern = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
+                + "A-Z]{2,7}$";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(email);
+        if (m.find()) {
+            System.out.println("Email : " + m.group());
+            this.email = email;
+        } else {
+            System.out.println("Email : null");
+            this.email = "NULL";
+        }
     }
 
     /**
@@ -106,7 +141,16 @@ public class Customer {
      * @param password
      */
     public void setPassword(String password) {
-        this.password = password;
+        String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(password);
+        if (m.find()) {
+            System.out.println("Password: " + m.group());
+            this.password = password;
+        } else {
+            System.out.println("Password: NULL");
+            this.password = "NULL";
+        }
     }
 
     /**
@@ -114,19 +158,25 @@ public class Customer {
      * 
      * @param joinDate
      */
-    public void setJoinDate(String joinDate) {
+    public void setJoinDate(Calendar joinDate) {
         this.joinDate = joinDate;
+    }
+
+    /**
+     * 
+     */
+    public void setJoinDate(int year, int month, int dayOfMonth) {
+        joinDate.set(year, month, dayOfMonth);
     }
 
     /**
      * This method will print all the variables data to the terminal
      */
-    public void printData() {
-        System.out.println(id);
-        System.out.println(name);
-        System.out.println(email);
-        System.out.println(password);
-        System.out.println(joinDate);
+    @Override
+    public String toString() {
+
+        return "ID = " + id + "Nama = " + name + "Email = " + email + "Password = " + password + "Join Date = "
+                + ft.format(joinDate.getTime());
     }
 
 }
