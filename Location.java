@@ -77,6 +77,7 @@ public class Location {
     /**
      * This method will print all the variables data to the terminal
      */
+    @Override
     public String toString() {
         return "Provinsi = " + province + "Kota = " + city + "Deskripsi = " + description;
     }

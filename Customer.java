@@ -31,9 +31,7 @@ public class Customer {
         setEmail(email);
         setPassword(password);
         this.joinDate = joinDate;
-        this.joinDate.add(Calendar.MONTH, -1);
     }
-
     /**
      * 
      */
@@ -42,9 +40,8 @@ public class Customer {
         this.name = name;
         setEmail(email);
         setPassword(password);
-        this.joinDate = new GregorianCalendar(year, month - 1, dayOfMonth);
+        this.joinDate = new GregorianCalendar(year, month-1, dayOfMonth);
     }
-
     /**
      * 
      */
@@ -129,10 +126,8 @@ public class Customer {
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(email);
         if (m.find()) {
-            System.out.println("Email : " + m.group());
             this.email = email;
         } else {
-            System.out.println("Email : null");
             this.email = "NULL";
         }
     }
@@ -147,10 +142,8 @@ public class Customer {
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(password);
         if (m.find()) {
-            System.out.println("Password: " + m.group());
             this.password = password;
         } else {
-            System.out.println("Password: NULL");
             this.password = "NULL";
         }
     }
@@ -180,11 +173,9 @@ public class Customer {
         if (joinDate != null) {
             String str = ft.format(joinDate.getTime());
 
-            return "ID = " + id + "\n" + "Nama = " + name + "\n" + "Email = " + email + "\n" + "Password = " + password
-                    + "\n" + "Join Date = " + str + "\n";
+            return "ID = " + id + "\n" + "Nama = " + name + "\n" + "Email = " + email + "\n" + "Password = " + password + "\n" + "Join Date = " + str + "\n";
         } else {
-            return "ID = " + id + "\n" + "Nama = " + name + "\n" + "Email = " + email + "\n" + "Password = " + password
-                    + "\n";
+            return "ID = " + id + "\n" + "Nama = " + name + "\n" + "Email = " + email + "\n" + "Password = " + password + "\n";
         }
 
     }
