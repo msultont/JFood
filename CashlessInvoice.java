@@ -58,7 +58,7 @@ public class CashlessInvoice extends Invoice {
 
         // This logic checks if there is promo object AND promo active status is true
         // AND price of the food is higher equal to minimal price from the promo.
-        if (getPromo() != null && promo.getActive() == true && super.getFood().getPrice() >= promo.getMinPrice()) {
+        if (getPromo() != null && promo.getActive() == true && super.getFood().getPrice() > promo.getMinPrice()) {
             super.totalPrice = super.getFood().getPrice() - promo.getDiscount();
             // Unless the top logic, this will execute another process.
         } else {
@@ -72,10 +72,10 @@ public class CashlessInvoice extends Invoice {
      */
     @Override
     public String toString() {
-        if (getPromo() == null || promo.getActive() == false || super.totalPrice < promo.getMinPrice()) {
-            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
-        } else {
+        if (getPromo() != null && promo.getActive() == true && super.totalPrice < promo.getMinPrice()) {
             return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nPromo: " + promo.getCode() + "\nDiscount: " + promo.getDiscount() + "\nBase Price: " + super.getFood().getPrice()+"\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
+        } else {
+            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
 
         }
 

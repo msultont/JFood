@@ -23,7 +23,7 @@ public class JFood {
         Food food1 = new Food(100, "Jengkol", seller1, 50000, FoodCategory.Beverages);
         Food food2 = new Food(200, "pete", seller1, 30000, FoodCategory.Japanese);
 
-        Promo promo1 = new Promo(99, "99promo1", 10000, 25000, true);
+        Promo promo1 = new Promo(99, "99promo1", 10000, 29999, true);
 
         CashInvoice invoice1 = new CashInvoice(1, food1, customer1, InvoiceStatus.FINISHED, 5000);
         CashlessInvoice invoice2 = new CashlessInvoice(2, food2, customer2, InvoiceStatus.FINISHED, promo1);
