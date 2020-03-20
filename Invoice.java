@@ -1,5 +1,7 @@
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 /**
  * This class will generate the invoice receipt to the customer after they have
  * finished doing transaction in JFood restaurant.
@@ -15,6 +17,8 @@ public abstract class Invoice {
     protected int totalPrice;
     private Customer customer;
     private InvoiceStatus invoiceStatus;
+    private SimpleDateFormat ft = new SimpleDateFormat("dd MMMM yyyy 'at' HH:mm:ss");
+    protected String str;
 
     /**
      * Constructor for objects of class Invoice
@@ -24,7 +28,8 @@ public abstract class Invoice {
         this.food = food;
         this.customer = customer;
         this.invoiceStatus = invoiceStatus;
-        this.date = new GregorianCalendar();
+        this.date = new GregorianCalendar(TimeZone.getTimeZone("Asia/Jakarta"));
+        this.str = ft.format(date.getTime());
     }
 
     /**
@@ -119,15 +124,15 @@ public abstract class Invoice {
      * 
      * @param date
      */
-    public Calendar setDate(Calendar date) {
-        return this.date = date;
+    public void setDate(Calendar date) {
+        this.date = date;
     }
 
     /**
      * 
      */
-    public Calendar setDate(int year, int month, int dayOfMonth) {
-        return this.date = new GregorianCalendar(year, month-1, dayOfMonth);
+    public void setDate(int year, int month, int dayOfMonth) {
+        this.date = new GregorianCalendar(year, month-1, dayOfMonth);
     }
 
     /**

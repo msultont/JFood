@@ -14,6 +14,7 @@ public class CashlessInvoice extends Invoice {
      */
     public CashlessInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus) {
         super(id, food, customer, invoiceStatus);
+        setTotalPrice();
     }
 
     /**
@@ -23,6 +24,7 @@ public class CashlessInvoice extends Invoice {
             Promo promo) {
         super(id, food, customer, invoiceStatus);
         this.promo = promo;
+        setTotalPrice();
     }
 
     /**
@@ -70,13 +72,10 @@ public class CashlessInvoice extends Invoice {
      */
     @Override
     public String toString() {
-
         if (getPromo() == null || promo.getActive() == false || super.totalPrice < promo.getMinPrice()) {
-            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + super.getDate() + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
-            
-
+            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
         } else {
-            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + super.getDate() + "\nCustomer: " + super.getCustomer().getName() + "\nPromo: " + promo.getCode() + "\nDiscount: " + promo.getDiscount() + "\nBase Price: " + super.getFood().getPrice()+"\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
+            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nPromo: " + promo.getCode() + "\nDiscount: " + promo.getDiscount() + "\nBase Price: " + super.getFood().getPrice()+"\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
 
         }
 

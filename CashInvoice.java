@@ -14,6 +14,7 @@ public class CashInvoice extends Invoice {
      */
     public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus) {
         super(id, food, customer, invoiceStatus);
+        setTotalPrice();
     }
 
     /**
@@ -25,6 +26,7 @@ public class CashInvoice extends Invoice {
             int deliveryFee) {
         super(id, food, customer, invoiceStatus);
         this.deliveryFee = deliveryFee;
+        setTotalPrice();
     }
 
     /**
@@ -65,14 +67,14 @@ public class CashInvoice extends Invoice {
     /**
      * 
      */
+    @Override
     public String toString() {
-
         if (getDeliveryFee() > 0) {
-            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + super.getDate() + "\nCustomer: " + super.getCustomer().getName() + "\nDelivery Fee: " + getDeliveryFee() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
+            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nDelivery Fee: " + getDeliveryFee() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
             
 
         } else {
-            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + super.getDate() + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + 
+            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + 
             "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
             
         }

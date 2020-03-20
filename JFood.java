@@ -12,7 +12,7 @@ public class JFood {
 
     public static void main(String[] args) {
         Customer customer1 = new Customer(10, "Sulton", ".msulton55@gmail.com", "sulto",
-                new GregorianCalendar(TimeZone.getTimeZone("America/Los_Angeles")));
+                new GregorianCalendar(TimeZone.getTimeZone("Asia/Jakarta")));
         Customer customer2 = new Customer(20, "Fathur", "msulton55@gmail.com", "Sulton69", 2019, 5, 04);
         Customer customer3 = new Customer(30, "Ateng", "atengwewewew@sad.com", "asdqwe123A");
 
@@ -21,12 +21,12 @@ public class JFood {
         Seller seller1 = new Seller(5, "Sulton", "sulton@", "0822", location1);
 
         Food food1 = new Food(100, "Jengkol", seller1, 50000, FoodCategory.Beverages);
-        Food food2 = new Food(200, "pete", seller1, 25000, FoodCategory.Japanese);
+        Food food2 = new Food(200, "pete", seller1, 30000, FoodCategory.Japanese);
 
         Promo promo1 = new Promo(99, "99promo1", 10000, 25000, true);
 
-        CashInvoice invoice1 = new CashInvoice(1, food1, customer1, InvoiceStatus.FINISHED);
-        CashlessInvoice invoice2 = new CashlessInvoice(2, food2, customer2, InvoiceStatus.ONGOING, promo1);
+        CashInvoice invoice1 = new CashInvoice(1, food1, customer1, InvoiceStatus.FINISHED, 5000);
+        CashlessInvoice invoice2 = new CashlessInvoice(2, food2, customer2, InvoiceStatus.FINISHED, promo1);
 
         //customer1.toString();
         // customer2.toString();
