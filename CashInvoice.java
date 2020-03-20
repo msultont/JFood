@@ -12,8 +12,8 @@ public class CashInvoice extends Invoice {
     /**
      * Constructor for objects of class CashInvoice
      */
-    public CashInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus) {
-        super(id, food, date, customer, invoiceStatus);
+    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus) {
+        super(id, food, customer, invoiceStatus);
     }
 
     /**
@@ -21,9 +21,9 @@ public class CashInvoice extends Invoice {
      * @param y
      * @return
      */
-    public CashInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus,
+    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus,
             int deliveryFee) {
-        super(id, food, date, customer, invoiceStatus);
+        super(id, food, customer, invoiceStatus);
         this.deliveryFee = deliveryFee;
     }
 
@@ -65,29 +65,16 @@ public class CashInvoice extends Invoice {
     /**
      * 
      */
-    public void printData() {
+    public String toString() {
+
         if (getDeliveryFee() > 0) {
-            System.out.println("=========INVOICE========");
-            System.out.println("ID: " + super.getId());
-            System.out.println("Food: " + super.getFood().getName());
-            System.out.println("Date: " + super.getDate());
-            System.out.println("Customer: " + super.getCustomer().getName());
-            System.out.println("Delivery Fee: " + getDeliveryFee());
-            System.out.println("Total Price: " + super.getTotalPrice());
-            System.out.println("Status: " + super.getInvoiceStatus());
-            System.out.println("Payment Type: " + PAYMENT_TYPE);
-            System.out.println("");
+            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + super.getDate() + "\nCustomer: " + super.getCustomer().getName() + "\nDelivery Fee: " + getDeliveryFee() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
+            
 
         } else {
-            System.out.println("=========INVOICE========");
-            System.out.println("ID: " + super.getId());
-            System.out.println("Food: " + super.getFood().getName());
-            System.out.println("Date: " + super.getDate());
-            System.out.println("Customer: " + super.getCustomer().getName());
-            System.out.println("Total Price: " + super.getTotalPrice());
-            System.out.println("Status: " + super.getInvoiceStatus());
-            System.out.println("Payment Type: " + PAYMENT_TYPE);
-            System.out.println("");
+            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + super.getDate() + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + 
+            "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
+            
         }
 
     }

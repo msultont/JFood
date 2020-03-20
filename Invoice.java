@@ -1,4 +1,5 @@
-
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 /**
  * This class will generate the invoice receipt to the customer after they have
  * finished doing transaction in JFood restaurant.
@@ -10,7 +11,7 @@ public abstract class Invoice {
     // Instances Variables
     private int id;
     private Food food;
-    private String date;
+    private Calendar date;
     protected int totalPrice;
     private Customer customer;
     private InvoiceStatus invoiceStatus;
@@ -18,12 +19,12 @@ public abstract class Invoice {
     /**
      * Constructor for objects of class Invoice
      */
-    public Invoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus) {
+    public Invoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus) {
         this.id = id;
         this.food = food;
-        this.date = date;
         this.customer = customer;
         this.invoiceStatus = invoiceStatus;
+        this.date = new GregorianCalendar();
     }
 
     /**
@@ -57,10 +58,10 @@ public abstract class Invoice {
      * 
      * @return date
      */
-    public String getDate() {
+    public Calendar getDate() {
         return date;
     }
-
+    
     /**
      * This method will return the total price all of the transaction in the invoice
      * 
@@ -118,8 +119,15 @@ public abstract class Invoice {
      * 
      * @param date
      */
-    public void setDate(String date) {
-        this.date = date;
+    public Calendar setDate(Calendar date) {
+        return this.date = date;
+    }
+
+    /**
+     * 
+     */
+    public Calendar setDate(int year, int month, int dayOfMonth) {
+        return this.date = new GregorianCalendar(year, month-1, dayOfMonth);
     }
 
     /**
@@ -149,6 +157,6 @@ public abstract class Invoice {
     /**
      * This method will print all the variables data to the terminal
      */
-    public abstract void printData();
+    public abstract String toString();
 
 }

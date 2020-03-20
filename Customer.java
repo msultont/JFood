@@ -50,6 +50,7 @@ public class Customer {
         this.name = name;
         setEmail(email);
         setPassword(password);
+        this.joinDate = new GregorianCalendar();
     }
 
     /**
