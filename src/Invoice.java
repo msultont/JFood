@@ -1,4 +1,5 @@
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
@@ -12,22 +13,21 @@ import java.util.TimeZone;
 public abstract class Invoice {
     // Instances Variables
     private int id;
-    private Food food;
+    private ArrayList<Food> foods;
     private Calendar date;
     protected int totalPrice;
     private Customer customer;
-    private InvoiceStatus invoiceStatus;
+    private InvoiceStatus invoiceStatus = InvoiceStatus.ONGOING;
     private SimpleDateFormat ft = new SimpleDateFormat("dd MMMM yyyy 'at' HH:mm:ss");
     protected String str;
 
     /**
      * Constructor for objects of class Invoice
      */
-    public Invoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus) {
+    public Invoice(int id, ArrayList<Food> foods, Customer customer) {
         this.id = id;
-        this.food = food;
+        this.foods = foods;
         this.customer = customer;
-        this.invoiceStatus = invoiceStatus;
         this.date = new GregorianCalendar(TimeZone.getTimeZone("Asia/Jakarta"));
         this.str = ft.format(date.getTime());
     }
@@ -42,20 +42,11 @@ public abstract class Invoice {
     }
 
     /**
-     * This method will return the id of the food of the invoice
-     * 
-     * @return idFood
-     */
-    public int getIdFood() {
-        return food.getId();
-    }
-
-    /**
      * 
      * @return
      */
-    public Food getFood() {
-        return food;
+    public ArrayList<Food> getFood() {
+        return foods;
     }
 
     /**
@@ -95,7 +86,7 @@ public abstract class Invoice {
 
     /**
      * 
-     * @param id
+     * @return
      */
     public InvoiceStatus getInvoiceStatus() {
         return invoiceStatus;
@@ -113,10 +104,10 @@ public abstract class Invoice {
     /**
      * This method will reasign the id of the food of the invoice
      * 
-     * @param idFood
+     * @param foods
      */
-    public void setIdFood(int idFood) {
-        food.setId(idFood);
+    public void setFood(ArrayList<Food> foods) {
+
     }
 
     /**

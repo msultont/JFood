@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Write a description of class DatabaseSeller here.
@@ -7,37 +9,45 @@
  */
 public class DatabaseSeller {
     // instance variables - replace the example below with your own
-    private static String[] listSeller;
+    private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<>();
+    private static int lastId = 0;
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param y a sample parameter for a method
-     * @return the sum of x and y
-     */
-    public static boolean addSeller(Seller seller) {
-
-        return true;
+    public static ArrayList<Seller> getSellerDatabase() {
+       return SELLER_DATABASE;
     }
 
-    /**
-     * 
-     */
-    public static boolean removeSeller(Seller seller) {
-        return true;
+    public static int getLastId() {
+        return lastId;
     }
 
-    /**
-     * 
-     */
-    public static Seller getSeller() {
+    public Seller getSellerById(int id) {
+        for (Seller seller : SELLER_DATABASE) {
+            if (seller.getId() == id) {
+                return seller;
+            }
+        }
         return null;
     }
 
     /**
+     *
+     */
+    public static boolean addSeller(Seller seller) {
+        SELLER_DATABASE.add(seller);
+        lastId = seller.getId();
+        return true;
+    }
+
+    /**
      * 
      */
-    public static String[] getListSeller() {
-        return listSeller;
+    public static boolean removeSeller(int id) {
+        for (Seller seller : SELLER_DATABASE) {
+            if (seller.getId() == id) {
+                SELLER_DATABASE.remove(seller);
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Write a description of class CashlessInvoice here.
@@ -12,17 +13,17 @@ public class CashlessInvoice extends Invoice {
     /**
      * Constructor for objects of class CashlessInvoice
      */
-    public CashlessInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus) {
-        super(id, food, customer, invoiceStatus);
+    public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer) {
+        super(id, foods, customer);
         setTotalPrice();
     }
 
     /**
      * 
      */
-    public CashlessInvoice(int id, Food food,  Customer customer, InvoiceStatus invoiceStatus,
+    public CashlessInvoice(int id, ArrayList<Food> foods,  Customer customer,
             Promo promo) {
-        super(id, food, customer, invoiceStatus);
+        super(id, foods, customer);
         this.promo = promo;
         setTotalPrice();
     }
@@ -30,7 +31,7 @@ public class CashlessInvoice extends Invoice {
     /**
      * An example of a method - replace this comment with your own
      *
-     * @param y a sample parameter for a method
+     *
      * @return the sum of x and y
      */
     public PaymentType getPaymentType() {
@@ -56,14 +57,18 @@ public class CashlessInvoice extends Invoice {
      */
     public void setTotalPrice() {
 
-        // This logic checks if there is promo object AND promo active status is true
-        // AND price of the food is higher equal to minimal price from the promo.
-        if (getPromo() != null && promo.getActive() == true && super.getFood().getPrice() > promo.getMinPrice()) {
-            super.totalPrice = super.getFood().getPrice() - promo.getDiscount();
-            // Unless the top logic, this will execute another process.
-        } else {
-            super.totalPrice = super.getFood().getPrice();
+        for (Food food : getFood()) {
+            // This logic checks if there is promo object AND promo active status is true
+            // AND price of the food is higher equal to minimal price from the promo.
+            if (getPromo() != null && promo.getActive() == true && super.getTotalPrice()  > promo.getMinPrice()) {
+                super.totalPrice = food.getPrice() - promo.getDiscount();
+                // Unless the top logic, this will execute another process.
+            } else {
+                super.totalPrice = food.getPrice();
+            }
         }
+
+
 
     }
 
@@ -72,12 +77,14 @@ public class CashlessInvoice extends Invoice {
      */
     @Override
     public String toString() {
-        if (getPromo() != null && promo.getActive() == true && super.totalPrice < promo.getMinPrice()) {
-            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nPromo: " + promo.getCode() + "\nDiscount: " + promo.getDiscount() + "\nBase Price: " + super.getFood().getPrice()+"\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
-        } else {
-            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
+        for (Food food : getFood()) {
+            if (getPromo() != null && promo.getActive() == true && super.totalPrice < promo.getMinPrice()) {
+                return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + food.getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nPromo: " + promo.getCode() + "\nDiscount: " + promo.getDiscount() + "\nBase Price: " + food.getPrice()+"\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
+            } else {
+                return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
 
+            }
         }
-
+        return "berhasil";
     }
 }

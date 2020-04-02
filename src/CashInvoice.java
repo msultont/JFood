@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Write a description of class CashInvoice here.
@@ -12,19 +13,19 @@ public class CashInvoice extends Invoice {
     /**
      * Constructor for objects of class CashInvoice
      */
-    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus) {
-        super(id, food, customer, invoiceStatus);
+    public CashInvoice(int id, ArrayList<Food> foods, Customer customer) {
+        super(id, foods, customer);
         setTotalPrice();
     }
 
     /**
      * 
-     * @param y
+     * @param
      * @return
      */
-    public CashInvoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus,
+    public CashInvoice(int id, ArrayList<Food> foods, Customer customer,
             int deliveryFee) {
-        super(id, food, customer, invoiceStatus);
+        super(id, foods, customer);
         this.deliveryFee = deliveryFee;
         setTotalPrice();
     }
@@ -32,7 +33,7 @@ public class CashInvoice extends Invoice {
     /**
      * An example of a method - replace this comment with your own
      *
-     * @param y a sample parameter for a method
+     *
      * @return the sum of x and y
      */
     public PaymentType getPaymentType() {
@@ -57,11 +58,14 @@ public class CashInvoice extends Invoice {
      * 
      */
     public void setTotalPrice() {
-        if (getDeliveryFee() > 0) {
-            super.totalPrice = super.getFood().getPrice() + getDeliveryFee();
-        } else {
-            super.totalPrice = super.getFood().getPrice();
+        for (Food food : getFood()) {
+            if (getDeliveryFee() > 0) {
+                super.totalPrice = food.getPrice() + getDeliveryFee();
+            } else {
+                super.totalPrice = food.getPrice();
+            }
         }
+
     }
 
     /**
@@ -70,11 +74,11 @@ public class CashInvoice extends Invoice {
     @Override
     public String toString() {
         if (getDeliveryFee() > 0) {
-            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nDelivery Fee: " + getDeliveryFee() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
+            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nDelivery Fee: " + getDeliveryFee() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
             
 
         } else {
-            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + 
+            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() +
             "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
             
         }
