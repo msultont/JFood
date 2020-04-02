@@ -17,7 +17,7 @@ public abstract class Invoice {
     private Calendar date;
     protected int totalPrice;
     private Customer customer;
-    private InvoiceStatus invoiceStatus = InvoiceStatus.ONGOING;
+    private InvoiceStatus invoiceStatus;
     private SimpleDateFormat ft = new SimpleDateFormat("dd MMMM yyyy 'at' HH:mm:ss");
     protected String str;
 
@@ -27,6 +27,7 @@ public abstract class Invoice {
     public Invoice(int id, ArrayList<Food> foods, Customer customer) {
         this.id = id;
         this.foods = foods;
+        this.invoiceStatus = InvoiceStatus.ONGOING;
         this.customer = customer;
         this.date = new GregorianCalendar(TimeZone.getTimeZone("Asia/Jakarta"));
         this.str = ft.format(date.getTime());

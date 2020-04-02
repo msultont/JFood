@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
@@ -35,7 +36,7 @@ public class JFood {
 
         //Promo promo1 = new Promo(99, "99promo1", 10000, 29999, true);
 
-        //CashInvoice invoice1 = new CashInvoice(1, DatabaseFood.getFoodDatabase(), customer1);
+        CashInvoice invoice1 = new CashInvoice(1, new ArrayList<>(), customer1);
 
         //CashlessInvoice invoice2 = new CashlessInvoice(2, DatabaseFood.getFoodDatabase(), customer2, promo1);
 

@@ -60,7 +60,7 @@ public class CashlessInvoice extends Invoice {
         for (Food food : getFood()) {
             // This logic checks if there is promo object AND promo active status is true
             // AND price of the food is higher equal to minimal price from the promo.
-            if (getPromo() != null && promo.getActive() == true && super.getTotalPrice()  > promo.getMinPrice()) {
+            if (getPromo() != null && promo.getActive() == true && food.getPrice() > promo.getMinPrice()) {
                 super.totalPrice = food.getPrice() - promo.getDiscount();
                 // Unless the top logic, this will execute another process.
             } else {
