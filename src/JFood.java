@@ -14,21 +14,21 @@ public class JFood {
     public static void main(String[] args) {
         Location location1 = new Location("Tangerang", "Banten", "Pusat");
 
-        Seller seller1 = new Seller(5, "Sulton", "sulton@", "0822", location1);
+        Seller seller1 = new Seller(DatabaseSeller.getLastId()+1, "Sulton", "sulton@", "0822", location1);
         DatabaseSeller.addSeller(seller1);
 
-        Customer customer1 = new Customer(10, "Sulton", "msulton55@gmail.com", "sulto",
+        Customer customer1 = new Customer(DatabaseCustomer.getLastId()+1, "Sulton", "msulton55@gmail.com", "sulto",
                 new GregorianCalendar(TimeZone.getTimeZone("Asia/Jakarta")));
-        Customer customer2 = new Customer(20, "Sulton", "msulton55@gmail.com", "Sulton69", 2019, 5, 04);
-        Customer customer3 = new Customer(30, "Fathur", "fathur@gmail.com", "asdqwe123A");
+        Customer customer2 = new Customer(DatabaseCustomer.getLastId()+1,"sulton","msulton55@gmail.com", "Sulton69", 2019, 5, 04);
+        Customer customer3 = new Customer(DatabaseCustomer.getLastId()+1, "Fathur", "fathur@gmail.com", "asdqwe123A");
         DatabaseCustomer.addCustomer(customer1);
         DatabaseCustomer.addCustomer(customer2);
         DatabaseCustomer.addCustomer(customer3);
         System.out.println(DatabaseCustomer.getCustomerDatabase());
 
-        Food food1 = new Food(100, "Jengkol", seller1, 50000, FoodCategory.Beverages);
-        Food food2 = new Food(200, "pete", seller1, 30000, FoodCategory.Beverages);
-        Food food3 = new Food(300, "kikil", DatabaseSeller.getSellerDatabase().get(0), 60000, FoodCategory.Bakery);
+        Food food1 = new Food(DatabaseCustomer.getLastId()+1, "Jengkol", seller1, 50000, FoodCategory.Beverages);
+        Food food2 = new Food(DatabaseCustomer.getLastId()+1, "pete", seller1, 30000, FoodCategory.Beverages);
+        Food food3 = new Food(DatabaseCustomer.getLastId()+1, "kikil", DatabaseSeller.getSellerDatabase().get(0), 60000, FoodCategory.Bakery);
         DatabaseFood.addFood(food1);
         DatabaseFood.addFood(food2);
         DatabaseFood.addFood(food3);
