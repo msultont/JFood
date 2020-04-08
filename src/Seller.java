@@ -18,7 +18,7 @@ public class Seller {
     /**
      * Constructor for objects of class Seller
      */
-    public Seller(int id, String name, String email, String phoneNumber, Location location) {
+    public Seller(int id, String name, String email, String phoneNumber, Location location) {        
         this.id = id;
         this.name = name;
         this.email = email;
@@ -125,7 +125,7 @@ public class Seller {
      */
     @Override
     public String toString() {
-        return "ID = " + id + "Name = " + name + "Phone number = " + phoneNumber + "Location = "
+        return "\nID = " + id + "\nName = " + name + "\nPhone number = " + phoneNumber + "\nLocation = "
                 + getLocation().getProvince() + ", " + getLocation().getCity();
     }
 

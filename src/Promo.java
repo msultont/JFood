@@ -101,7 +101,7 @@ public class Promo {
      */
     @Override
     public String toString() {
-        return "ID = " + id + "Kode = " + code + "Diskon = " + discount + "Min price = " + minPrice + "Active status = "
+        return "\nID = " + id + "\nKode = " + code + "\nDiskon = " + discount + "\nMin price = " + minPrice + "\nActive status = "
                 + getActive();
 
     }

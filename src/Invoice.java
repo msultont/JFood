@@ -46,7 +46,7 @@ public abstract class Invoice {
      * 
      * @return
      */
-    public ArrayList<Food> getFood() {
+    public ArrayList<Food> getFoods() {
         return foods;
     }
 
@@ -107,7 +107,7 @@ public abstract class Invoice {
      * 
      * @param foods
      */
-    public void setFood(ArrayList<Food> foods) {
+    public void setFoods(ArrayList<Food> foods) {
 
     }
 

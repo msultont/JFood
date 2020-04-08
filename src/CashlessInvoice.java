@@ -56,15 +56,14 @@ public class CashlessInvoice extends Invoice {
      * 
      */
     public void setTotalPrice() {
-        for (Food food : getFood()) {
+        for (Food food : super.getFoods()) {
             // This logic checks if there is promo object AND promo active status is true
-            // AND price of the food is higher equal to minimal price from the promo.
-            if (getPromo() != null && promo.getActive() == true && food.getPrice() > promo.getMinPrice()) {
-                super.totalPrice = super.totalPrice + food.getPrice() - promo.getDiscount();
-                // Unless the top logic, this will execute another process.
-            } else {
-                super.totalPrice = super.totalPrice + food.getPrice();
-            }
+            // AND price of the total food is higher than the minimal price from the promo.
+            super.totalPrice = super.totalPrice + food.getPrice();
+        }
+        if (getPromo() != null && getPromo().getActive() == true && super.getTotalPrice() > getPromo().getMinPrice()) {
+            super.totalPrice = super.totalPrice - getPromo().getDiscount();
+            // Unless the top logic, this will execute another process.
         }
     }
 
@@ -73,14 +72,11 @@ public class CashlessInvoice extends Invoice {
      */
     @Override
     public String toString() {
-        for (Food food : getFood()) {
-            if (getPromo() != null && promo.getActive() == true && super.totalPrice < promo.getMinPrice()) {
-                return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + food.getName() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nPromo: " + promo.getCode() + "\nDiscount: " + promo.getDiscount() + "\nBase Price: " + food.getPrice()+"\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
-            } else {
-                return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFood() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
+        if (getPromo() != null && getPromo().getActive() == true && super.totalPrice > promo.getMinPrice()) {
+            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFoods() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nPromo: " + getPromo().getCode() + "\nDiscount: " + getPromo().getDiscount() + "\nBase Price: " + (super.getTotalPrice()+getPromo().getDiscount()) +"\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
+        } else {
+            return "=========INVOICE========\n" + "ID: " + super.getId() + "\nFood: " + super.getFoods() + "\nDate: " + str + "\nCustomer: " + super.getCustomer().getName() + "\nTotal Price: " + super.getTotalPrice() + "\nStatus: " + super.getInvoiceStatus() + "\nPayment Type: " + PAYMENT_TYPE + "\n";
 
-            }
         }
-        return "berhasil";
     }
 }

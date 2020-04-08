@@ -33,8 +33,8 @@ public class DatabaseSeller {
      *
      */
     public static boolean addSeller(Seller seller) {
-        SELLER_DATABASE.add(seller);
         lastId = seller.getId();
+        SELLER_DATABASE.add(seller);        
         return true;
     }
 

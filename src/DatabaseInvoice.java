@@ -8,6 +8,10 @@ public class DatabaseInvoice {
         return DATABASE_INVOICE;
     }
 
+    public static ArrayList<Invoice> getInvoiceDatabaseByCustomer() {
+        return DATABASE_INVOICE_BY_CUSTOMER;
+    }
+
     public static int getLastId() {
         return lastId;
     }
@@ -52,7 +56,7 @@ public class DatabaseInvoice {
 
     public static boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus) {
         for (Invoice invoice: DATABASE_INVOICE) {
-            if (invoice.getId() == id) {
+            if (invoice.getId() == id && invoice.getInvoiceStatus() == InvoiceStatus.ONGOING) {
                 invoice.setInvoiceStatus(invoiceStatus);
                 return true;
             }
