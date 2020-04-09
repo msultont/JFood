@@ -80,22 +80,15 @@ public class JFood {
         try {
             DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId()+1, foods1, DatabaseCustomer.getCustomerById(1), 15000));
             DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1, foods2, DatabaseCustomer.getCustomerById(2), DatabasePromo.getPromoById(2))); 
-            for (Invoice i : DatabaseInvoice.getInvoiceByCustomer(1)) {
-                i.setTotalPrice();
-                i.setInvoiceStatus(InvoiceStatus.FINISHED);
-            }
             DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1, foods3, DatabaseCustomer.getCustomerById(3), DatabasePromo.getPromoById(2)));
             DatabasePromo.getPromoById(1).setActive(true);
-            for (Invoice i : DatabaseInvoice.getInvoiceDatabase()) {
-                i.setTotalPrice();
-            }
         } catch (CustomerNotFoundException e) {
             //TODO: handle exception
             System.out.println(e);
         } catch (PromoNotFoundException e) {
             System.out.println(e);
         }
-
+        
         try {
             PriceCalculator calc1 = new PriceCalculator(DatabaseInvoice.getInvoiceById(1));
             PriceCalculator calc2 = new PriceCalculator(DatabaseInvoice.getInvoiceById(2));
@@ -113,7 +106,7 @@ public class JFood {
         //System.out.println(DatabasePromo.getPromoDatabase());
         //System.out.println(DatabaseInvoice.getInvoiceDatabaseByCustomer());
         //System.out.println(DatabaseSeller.getSellerDatabase());
-        //System.out.println(DatabaseInvoice.getInvoiceDatabase());
+        System.out.println(DatabaseInvoice.getInvoiceDatabase());
         //System.out.println(DatabaseInvoice.getInvoiceByCustomer(1));
         //System.out.println(invoice1);
         //CashlessInvoice invoice2 = new CashlessInvoice(2, DatabaseFood.getFoodDatabase(), customer2, promo1);

@@ -15,7 +15,6 @@ public class CashInvoice extends Invoice {
      */
     public CashInvoice(int id, ArrayList<Food> foods, Customer customer) {
         super(id, foods, customer);
-        setTotalPrice();
     }
 
     /**
@@ -27,7 +26,6 @@ public class CashInvoice extends Invoice {
             int deliveryFee) {
         super(id, foods, customer);
         this.deliveryFee = deliveryFee;
-        setTotalPrice();
     }
 
     /**
