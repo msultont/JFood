@@ -174,7 +174,7 @@ public class Customer {
         if (joinDate != null) {
             String str = ft.format(joinDate.getTime());
 
-            return "ID = " + id + "\n" + "Nama = " + name + "\n" + "Email = " + email + "\n" + "Password = " + password + "\n" + "Join Date = " + str + "\n";
+            return "==========CUSTOMER==========\n" + "ID = " + id + "\n" + "Nama = " + name + "\n" + "Email = " + email + "\n" + "Password = " + password + "\n" + "Join Date = " + str + "\n";
         } else {
             return "ID = " + id + "\n" + "Nama = " + name + "\n" + "Email = " + email + "\n" + "Password = " + password + "\n";
         }

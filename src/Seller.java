@@ -125,7 +125,7 @@ public class Seller {
      */
     @Override
     public String toString() {
-        return "\nID = " + id + "\nName = " + name + "\nPhone number = " + phoneNumber + "\nLocation = "
+        return "==========SELLER==========\n" + "\nID = " + id + "\nName = " + name + "\nPhone number = " + phoneNumber + "\nLocation = "
                 + getLocation().getProvince() + ", " + getLocation().getCity();
     }
 

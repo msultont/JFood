@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -20,13 +19,13 @@ public class DatabaseSeller {
         return lastId;
     }
 
-    public Seller getSellerById(int id) {
+    public static Seller getSellerById(int id) throws SellerNotFoundException {
         for (Seller seller : SELLER_DATABASE) {
             if (seller.getId() == id) {
                 return seller;
             }
         }
-        return null;
+        throw new SellerNotFoundException(id);
     }
 
     /**
@@ -41,13 +40,13 @@ public class DatabaseSeller {
     /**
      * 
      */
-    public static boolean removeSeller(int id) {
+    public static boolean removeSeller(int id) throws SellerNotFoundException {
         for (Seller seller : SELLER_DATABASE) {
             if (seller.getId() == id) {
                 SELLER_DATABASE.remove(seller);
                 return true;
             }
         }
-        return false;
+        throw new SellerNotFoundException(id);
     }
 }

@@ -121,7 +121,7 @@ public class Food {
      */
     @Override
     public String toString() {
-        return "ID = " + id + "\nNama = " + name + "\nSeller = " + getSeller().getName() + "\nCity = "
+        return "==========FOOD==========\n" + "ID = " + id + "\nNama = " + name + "\nSeller = " + getSeller().getName() + "\nCity = "
                 + getSeller().getLocation().getCity() + "\nPrice = " + getPrice() + "\nCategory = " + getCategory();
 
     }
