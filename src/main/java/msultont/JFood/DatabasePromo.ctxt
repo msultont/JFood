@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=DatabasePromo
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ DatabasePromo\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=promo
+comment1.target=boolean\ addPromo(Promo)
+comment1.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ y\ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ the\ sum\ of\ x\ and\ y\r\n
+comment2.params=promo
+comment2.target=boolean\ removePromo(Promo)
+comment2.text=\r\n\ \r\n
+comment3.params=
+comment3.target=Promo\ getPromo()
+comment3.text=\r\n\ \r\n
+comment4.params=
+comment4.target=java.lang.String[]\ getListPromo()
+comment4.text=\r\n\ \r\n
+numComments=5
