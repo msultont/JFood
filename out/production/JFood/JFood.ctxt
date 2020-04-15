@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=JFood
-comment0.text=\r\n\ This\ is\ the\ main\ restaurant\ of\ JFood.\ Every\ object\ creation\ is\ created\ here\r\n\ and\ all\ process\ is\ focused\ in\ this\ one\ class.\r\n\r\n\ @author\ Muhammad\ Sulton\ Tauhid\r\n\ @version\ February\ 27th,\ 2020\r\n
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-numComments=2
