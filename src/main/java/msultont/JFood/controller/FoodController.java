@@ -2,6 +2,7 @@ package msultont.JFood.controller;
 import msultont.JFood.*;
 import java.util.ArrayList;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,29 +15,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FoodController {
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ArrayList<Food> getAllFood() {
         return DatabaseFood.getFoodDatabase();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Food getFoodById(int id) {
+    public Food getFoodById(@PathVariable int id) {
+        Food food = null;
         try {
-            return DatabaseFood.getFoodById(id);
+            food = DatabaseFood.getFoodById(id);
         } catch (FoodNotFoundException e) {
             //TODO: handle exception
             System.out.println(e);
         }
-        return null;
+        return food;
     }
 
-    @RequestMapping(value = "/seller/{id}", method = RequestMethod.GET)
-    public ArrayList<Food> getFoodBySeller(int sellerId) {
-        return DatabaseFood.getFoodBySeller(sellerId);
+    @RequestMapping(value = "/seller/{sellerId}", method = RequestMethod.GET)
+    public ArrayList<Food> getFoodBySeller(@PathVariable int sellerId) {
+        ArrayList<Food> foods = null;
+        foods = DatabaseFood.getFoodBySeller(sellerId);
+        return foods;
     }
 
-    @RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
-    public ArrayList<Food> getFoodByCategory(FoodCategory category) {
+    @RequestMapping(value = "/category/{category}", method = RequestMethod.GET)
+    public ArrayList<Food> getFoodByCategory(@PathVariable FoodCategory category) {
         return DatabaseFood.getFoodByCategory(category);
     }
 
@@ -46,20 +50,14 @@ public class FoodController {
                         @RequestParam(value = "category") FoodCategory category, 
                         @RequestParam(value = "sellerId") int sellerId) 
     {
+        Food food = null;
         try {
-            for (Food food : DatabaseFood.getFoodDatabase()) {
-                if (food.getName() != name) {
-                     DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1, name, DatabaseSeller.getSellerById(sellerId), price, category));
-                     return DatabaseFood.getFoodById(DatabaseFood.getLastId());
-                }
-            }    
-        } catch (FoodNotFoundException e) {
-            //TODO: handle exception
-            System.out.println(e);
+            food = new Food(DatabaseFood.getLastId()+1, name, DatabaseSeller.getSellerById(sellerId), price, category);
+            DatabaseFood.addFood(food);
         } catch (SellerNotFoundException e) {
             System.out.println(e);
         }
         
-        return null;
+        return food;
     }
 }

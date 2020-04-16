@@ -16,15 +16,32 @@ import java.util.TimeZone;
 public class JFood {
 
     public static void main(String[] args) {
-        SpringApplication.run(JFood.class, args);
-
-        /*
         Location location1 = new Location("Tangerang", "Banten", "Pusat");
+        Location location2 = new Location("BSD", "Tangerang selatan", "Cabang");
+        Location location3 = new Location("Bandung", "jawa barat", "Cabang");
 
         DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "Sulton", "sulton@", "0822", location1));
-        DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "Jeky", "jeky@", "0812", location1));
-        DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "Boi", "boi@", "0899", location1));
+        DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "Jeky", "jeky@", "0812", location2));
+        DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "Boi", "boi@", "0899", location3));
 
+        DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1, "Jengkol", DatabaseSeller.getSellerDatabase().get(0), 20000, FoodCategory.Beverages));
+        DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1, "pete", DatabaseSeller.getSellerDatabase().get(1), 40000, FoodCategory.Beverages));
+        DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1, "kikil", DatabaseSeller.getSellerDatabase().get(2), 60000, FoodCategory.Bakery));
+        DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1, "rendang", DatabaseSeller.getSellerDatabase().get(2), 100000, FoodCategory.Japanese));
+
+        try {
+            DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId()+1, "promo1", 50000, 100000, true));
+            
+        } catch (PromoCodeAlreadyExistsException e) {
+            //TODO: handle exception
+            System.out.println(e);
+        }
+
+        SpringApplication.run(JFood.class, args);
+
+        
+        
+        /*
         try {
             DatabaseSeller.getSellerById(4);
         } catch (SellerNotFoundException e) {
@@ -48,9 +65,7 @@ public class JFood {
             System.out.println(e);
         }
         
-        DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1, "Jengkol", DatabaseSeller.getSellerDatabase().get(0), 20000, FoodCategory.Beverages));
-        DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1, "pete", DatabaseSeller.getSellerDatabase().get(1), 40000, FoodCategory.Beverages));
-        DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1, "kikil", DatabaseSeller.getSellerDatabase().get(2), 60000, FoodCategory.Bakery));
+        
         try {
             DatabaseFood.getFoodById(6);    
         } catch (Exception e) {

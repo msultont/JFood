@@ -2,6 +2,7 @@ package msultont.JFood.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,25 +16,26 @@ import msultont.JFood.*;
 @RestController
 public class SellerController {
 
-    @RequestMapping("")
+    @RequestMapping("/")
     public ArrayList<Seller> getAllSeller() {
         return DatabaseSeller.getSellerDatabase();
 
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Seller getSellerById(@RequestParam(value = "id") int id) {
+    public Seller getSellerById(@PathVariable int id) {
+        Seller seller = null;
         try {
-            return DatabaseSeller.getSellerById(id);    
+            seller = DatabaseSeller.getSellerById(id); 
         } catch (SellerNotFoundException e) {
             //TODO: handle exception
             System.out.println(e);
         }
-        return null;
+        return seller;
         
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public Seller addSeller(@RequestParam(value = "name") String name, 
                             @RequestParam(value = "email") String email,
                             @RequestParam(value = "phoneNumber") String phoneNumber,
@@ -41,14 +43,14 @@ public class SellerController {
                             @RequestParam(value = "city") String city, 
                             @RequestParam(value = "description") String description) 
     {
-        
-        for (Seller seller : DatabaseSeller.getSellerDatabase()) {
-            if (seller.getName() != name) {
-                DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, name, email, phoneNumber, new Location(city, province, description)));
-                return seller;
-            }
+        Seller seller = new Seller(DatabaseSeller.getLastId()+1, name, email, phoneNumber, new Location(city, province, description));
+        try {
+            DatabaseSeller.addSeller(seller);
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
         }
-        return null;
+        return seller;
     }
     
 }

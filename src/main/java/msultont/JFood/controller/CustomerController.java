@@ -5,16 +5,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/customer")
 @RestController
 public class CustomerController {
-    @RequestMapping("")
+    @RequestMapping("/")
     public String indexPage(@RequestParam(value="name", defaultValue="world") String name) {
         return "Hello " + name;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Customer loginCustomer(@RequestParam(value="email") String email, 
+    public Customer loginCustomer(@RequestParam(value = "email") String email, 
                                  @RequestParam(value = "password") String password) 
     {
-        return DatabaseCustomer.customerLogin(email, password);
+        Customer customer = null;
+        customer = DatabaseCustomer.customerLogin(email, password);
+        return customer;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -27,7 +29,6 @@ public class CustomerController {
             DatabaseCustomer.addCustomer(customer);
         } catch (EmailAlreadyExistsException e) {
             e.getMessage();
-            return null;
         }
         return customer;
     }
@@ -39,7 +40,6 @@ public class CustomerController {
             customer = DatabaseCustomer.getCustomerById(id);
         } catch (CustomerNotFoundException e) {
             e.getMessage();
-            return null;
         }
         return customer;
     }

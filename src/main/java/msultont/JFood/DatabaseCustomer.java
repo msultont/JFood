@@ -62,8 +62,8 @@ public class DatabaseCustomer {
      * 
      */
     public static Customer customerLogin(String email, String password) {
-       for (Customer customer : DatabaseCustomer.getCustomerDatabase()) {
-            if (customer.getEmail() == email && customer.getPassword() == password ) {
+       for (Customer customer : CUSTOMER_DATABASE) {
+            if (customer.getEmail().equals(email)  && customer.getPassword().equals(password)) {
                 return customer;
             }
        }
