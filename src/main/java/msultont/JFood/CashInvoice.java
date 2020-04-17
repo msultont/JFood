@@ -57,13 +57,25 @@ public class CashInvoice extends Invoice {
      * 
      */
     public void setTotalPrice() {
-        for (Food food : super.getFoods()) {
-            super.totalPrice = super.totalPrice + food.getPrice();
+        if (super.totalPrice == 0) {
+            for (Food food : super.getFoods()) {
+                super.totalPrice = super.totalPrice + food.getPrice();
+            }
+            super.totalPrice = super.totalPrice - super.previousTotalPrice;
+            super.previousTotalPrice = super.totalPrice;
+            if (getDeliveryFee() > 0) {
+                super.totalPrice =  super.previousTotalPrice + getDeliveryFee();
+            }
+        } else {
+            super.totalPrice = super.totalPrice - getDeliveryFee(); 
+            for (Food food : super.getFoods()) {
+                super.totalPrice = super.totalPrice + food.getPrice();
+            }
+            super.totalPrice = super.totalPrice - super.previousTotalPrice;
+            super.previousTotalPrice = super.totalPrice;
+            if (getDeliveryFee() > 0) 
+                super.totalPrice =  super.previousTotalPrice + getDeliveryFee(); 
         }
-        if (getDeliveryFee() > 0) {
-            super.totalPrice = super.totalPrice + getDeliveryFee();
-        }
-
     }
 
     /**

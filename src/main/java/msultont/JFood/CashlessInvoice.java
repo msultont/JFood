@@ -55,15 +55,33 @@ public class CashlessInvoice extends Invoice {
      * 
      */
     public void setTotalPrice() {
-        for (Food food : super.getFoods()) {
-            // This logic checks if there is promo object AND promo active status is true
-            // AND price of the total food is higher than the minimal price from the promo.
-            super.totalPrice = super.totalPrice + food.getPrice();
+        if (super.totalPrice == 0) {
+            for (Food food : super.getFoods()) {
+                // This logic checks if there is promo object AND promo active status is true
+                // AND price of the total food is higher than the minimal price from the promo.
+                super.totalPrice = super.totalPrice + food.getPrice();
+            }
+            super.totalPrice = super.totalPrice - super.previousTotalPrice;
+            super.previousTotalPrice = super.totalPrice;
+            if (getPromo() != null && getPromo().getActive() == true && super.getTotalPrice() > getPromo().getMinPrice())
+                super.totalPrice = super.previousTotalPrice  - getPromo().getDiscount();
+                // Unless the top logic, this will execute another process.
+            
+        } else {
+            super.totalPrice = super.totalPrice + getPromo().getDiscount(); 
+            for (Food food : super.getFoods()) {
+                // This logic checks if there is promo object AND promo active status is true
+                // AND price of the total food is higher than the minimal price from the promo.
+                super.totalPrice = super.totalPrice + food.getPrice();
+            }
+            super.totalPrice = super.totalPrice - super.previousTotalPrice;
+            super.previousTotalPrice = super.totalPrice;
+            if (getPromo() != null && getPromo().getActive() == true && super.getTotalPrice() > getPromo().getMinPrice())
+                super.totalPrice = super.previousTotalPrice  - getPromo().getDiscount();
+                // Unless the top logic, this will execute another process.
         }
-        if (getPromo() != null && getPromo().getActive() == true && super.getTotalPrice() > getPromo().getMinPrice()) {
-            super.totalPrice = super.totalPrice - getPromo().getDiscount();
-            // Unless the top logic, this will execute another process.
-        }
+
+        
     }
 
     /**

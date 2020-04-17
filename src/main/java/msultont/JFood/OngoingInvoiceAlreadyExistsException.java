@@ -11,7 +11,13 @@ public class OngoingInvoiceAlreadyExistsException extends Exception {
     }
 
     public String getMessage() {
-        return super.getMessage() + invoice_error.getId() + " denied";
+        String message = "";
+        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase()) {
+            if (invoice.getCustomer().getId() == invoice_error.getCustomer().getId()) {
+                message = super.getMessage() + invoice.getId() + " with customer ID " + invoice.getCustomer().getId() + " is on process";
+            }
+        }
+        return message; 
     }
     
 }

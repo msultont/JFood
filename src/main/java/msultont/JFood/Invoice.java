@@ -16,6 +16,7 @@ public abstract class Invoice {
     private int id;
     private ArrayList<Food> foods;
     private Calendar date;
+    protected int previousTotalPrice = 0;
     protected int totalPrice;
     private Customer customer;
     private InvoiceStatus invoiceStatus;
@@ -108,8 +109,8 @@ public abstract class Invoice {
      * 
      * @param foods
      */
-    public void setFoods(ArrayList<Food> foods) {
-
+    public void setFoods(Food food) {
+        foods.add(food);
     }
 
     /**

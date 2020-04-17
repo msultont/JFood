@@ -20,6 +20,16 @@ public class JFood {
         Location location2 = new Location("BSD", "Tangerang selatan", "Cabang");
         Location location3 = new Location("Bandung", "jawa barat", "Cabang");
 
+        try {
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1, "Sulton", "msulton55@gmail.com", "Msulto55", new GregorianCalendar(TimeZone.getTimeZone("Asia/Jakarta"))));
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1,"m jeky","jeky@gmail.com", "Jeky69", 2019, 5, 04));
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1, "Fathur", "fathur@gmail.com", "AsDqwe123A"));
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1, "Joe", "Joe@", "Joe12345"));
+        } catch (EmailAlreadyExistsException e) {
+            //TODO: handle exception
+            System.out.println(e);
+        } 
+
         DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "Sulton", "sulton@", "0822", location1));
         DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "Jeky", "jeky@", "0812", location2));
         DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "Boi", "boi@", "0899", location3));
@@ -38,6 +48,38 @@ public class JFood {
             System.out.println(e);
         }
 
+        /*
+        ArrayList<Food> foods1 = new ArrayList<>();
+        ArrayList<Food> foods2 = new ArrayList<>();
+        ArrayList<Food> foods3 = new ArrayList<>();
+        try {    
+            foods1.add(DatabaseFood.getFoodById(1));
+            foods1.add(DatabaseFood.getFoodById(2));    
+            foods2.add(DatabaseFood.getFoodById(2));
+            foods2.add(DatabaseFood.getFoodById(3));
+            foods3.add(DatabaseFood.getFoodById(1));
+            foods3.add(DatabaseFood.getFoodById(3));
+        } catch (FoodNotFoundException e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+        */
+
+        /*
+        try {
+            DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId()+1, foods1, DatabaseCustomer.getCustomerById(1), 15000));
+            DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1, foods2, DatabaseCustomer.getCustomerById(2), DatabasePromo.getPromoById(1))); 
+        }
+        catch (CustomerNotFoundException e) {
+            //TODO: handle exception
+            System.out.println(e);
+        } catch (PromoNotFoundException e) {
+            System.out.println(e);
+        } catch (OngoingInvoiceAlreadyExistsException e) {
+            System.out.println(e);
+        }
+        */
+
         SpringApplication.run(JFood.class, args);
 
         
@@ -51,15 +93,7 @@ public class JFood {
         }
 
         
-        try {
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1, "Sulton", "msulton55@gmail.com", "sulto55", new GregorianCalendar(TimeZone.getTimeZone("Asia/Jakarta"))));
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1,"m jeky","jeky@gmail.com", "jeky69", 2019, 5, 04));
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1, "Fathur", "fathur@gmail.com", "asdqwe123A"));
-            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastId()+1, "Joe", "Joe@", "joe12345"));
-        } catch (EmailAlreadyExistsException e) {
-            //TODO: handle exception
-            System.out.println(e);
-        } 
+        
         try {
             DatabaseCustomer.getCustomerById(9);
         } catch (CustomerNotFoundException e) {
@@ -85,20 +119,7 @@ public class JFood {
             System.out.println(e);
         }
 
-        ArrayList<Food> foods1 = new ArrayList<>();
-        ArrayList<Food> foods2 = new ArrayList<>();
-        ArrayList<Food> foods3 = new ArrayList<>();
-        try {    
-            foods1.add(DatabaseFood.getFoodById(1));
-            foods1.add(DatabaseFood.getFoodById(2));    
-            foods2.add(DatabaseFood.getFoodById(2));
-            foods2.add(DatabaseFood.getFoodById(3));
-            foods3.add(DatabaseFood.getFoodById(1));
-            foods3.add(DatabaseFood.getFoodById(3));
-        } catch (FoodNotFoundException e) {
-            //TODO: handle exception
-            e.printStackTrace();
-        }
+        
         
         try {
             DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId()+1, foods1, DatabaseCustomer.getCustomerById(1), 15000));

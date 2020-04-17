@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class HomepageController {
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String homePage(@RequestParam(name = "name", required = false, defaultValue = "unknown") String name, Model model) {
         model.addAttribute("name", name);
         return "Homepage";

@@ -27,12 +27,12 @@ public class InvoiceController {
     }
 
     @RequestMapping("/customer/{customerId}")
-    public ArrayList<Invoice> getInvoiceByCustomer(int customerId) {
+    public ArrayList<Invoice> getInvoiceByCustomer(@PathVariable int customerId) {
         return DatabaseInvoice.getInvoiceByCustomer(customerId);
     }
 
     @RequestMapping(value = "/invoiceStatus/{id}", method = RequestMethod.PUT)
-    public Invoice changeInvoiceStatus(@RequestParam(value = "id") int id, 
+    public Invoice changeInvoiceStatus(@PathVariable int id, 
                                        @RequestParam(value = "status") InvoiceStatus status) 
     {
         for (Invoice invoice : getAllInvoice()) {
@@ -44,19 +44,39 @@ public class InvoiceController {
         return null;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteInvoice", method = RequestMethod.DELETE)
     public Boolean removeInvoice(@RequestParam(value = "id") int id) {
         try {
-            for (Invoice invoice : getAllInvoice()) {
-                if (invoice.getId() == id) {
-                    DatabaseInvoice.removeInvoice(id);
-                }
-            }    
+            DatabaseInvoice.removeInvoice(id);
         } catch (InvoiceNotFoundException e) {
             //TODO: handle exception
             System.out.println(e);
         }
         return true;
+    }
+
+    @RequestMapping(value = "/addFood/{customerId}", method = RequestMethod.PUT)
+    public Invoice addFoodPerInvoiceByCustomerId(@RequestParam(value = "foodIdList") ArrayList<Integer> foodIdList, 
+                                                 @PathVariable int customerId) {
+        ArrayList<Food> newFood = new ArrayList<>();
+        try {
+            for (int counter : foodIdList) {
+                newFood.add(DatabaseFood.getFoodById(counter));
+            }
+        } catch (FoodNotFoundException e) {
+            //TODO: handle exception
+            System.out.println(e);
+        }
+        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(customerId)) {
+            if (invoice.getPaymentType().equals(PaymentType.Cash)) {
+                for (Food food : newFood) {
+                    invoice.setFoods(food);
+                    invoice.setTotalPrice();
+                }
+                return invoice;
+            }
+        }
+        return null;
     }
 
     @RequestMapping(value = "/createCashInvoice", method = RequestMethod.POST)
@@ -65,25 +85,27 @@ public class InvoiceController {
                                   @RequestParam(value = "deliveryFee") int deliveryFee) 
     {
         ArrayList<Food> newFood = new ArrayList<>();
+        CashInvoice cashInvoice = null;
         try {
-            newFood.add(DatabaseFood.getFoodById(foodIdList.get(0)));
-            newFood.add(DatabaseFood.getFoodById(foodIdList.get(1)));
-            newFood.add(DatabaseFood.getFoodById(foodIdList.get(2)));
+            for (int counter : foodIdList) {
+                newFood.add(DatabaseFood.getFoodById(counter));
+            }
         } catch (FoodNotFoundException e) {
             //TODO: handle exception
             System.out.println(e);
         }
+
         try {
-            CashInvoice cashInvoice = new CashInvoice(DatabaseInvoice.getLastId()+1, newFood, DatabaseCustomer.getCustomerById(customerId), deliveryFee);
+            cashInvoice = new CashInvoice(DatabaseInvoice.getLastId()+1, newFood, DatabaseCustomer.getCustomerById(customerId), deliveryFee);
             cashInvoice.setTotalPrice();
-            try {
-                DatabaseInvoice.addInvoice(cashInvoice);
-            } catch (OngoingInvoiceAlreadyExistsException e) {
-                //TODO: handle exception
-                System.out.println(e);
-            }
-            return cashInvoice;
         } catch (CustomerNotFoundException e) {
+            //TODO: handle exception
+            System.out.println(e);
+        }
+        try {
+            DatabaseInvoice.addInvoice(cashInvoice);
+            return cashInvoice;
+        } catch (OngoingInvoiceAlreadyExistsException e) {
             //TODO: handle exception
             System.out.println(e);
         }
@@ -96,29 +118,30 @@ public class InvoiceController {
                                        @RequestParam(value = "promoCode") String promoCode) 
     {
         ArrayList<Food> newFood = new ArrayList<>();
+        CashlessInvoice cashlessInvoice = null;
         try {
-            newFood.add(DatabaseFood.getFoodById(foodIdList.get(0)));
-            newFood.add(DatabaseFood.getFoodById(foodIdList.get(1)));
-            newFood.add(DatabaseFood.getFoodById(foodIdList.get(2)));
+            for (int counter : foodIdList) {
+                newFood.add(DatabaseFood.getFoodById(counter));
+            }
         } catch (FoodNotFoundException e) {
             //TODO: handle exception
             System.out.println(e);
-        } 
+        }
         try {
-            CashlessInvoice cashlessInvoice = new CashlessInvoice(DatabaseInvoice.getLastId()+1, newFood, DatabaseCustomer.getCustomerById(customerId), DatabasePromo.getPromoByCode(promoCode));
+            cashlessInvoice = new CashlessInvoice(DatabaseInvoice.getLastId()+1, newFood, DatabaseCustomer.getCustomerById(customerId), DatabasePromo.getPromoByCode(promoCode));
             cashlessInvoice.setTotalPrice();
-            try {
-                DatabaseInvoice.addInvoice(cashlessInvoice);
-            } catch (OngoingInvoiceAlreadyExistsException e) {
-                //TODO: handle exception
-                System.out.println(e);
-            }
-            return cashlessInvoice;
+            
         } catch (CustomerNotFoundException e) {
             //TODO: handle exception
             System.out.println(e);
         }
+        try {
+            DatabaseInvoice.addInvoice(cashlessInvoice);
+            return cashlessInvoice;
+        } catch (OngoingInvoiceAlreadyExistsException e) {
+            //TODO: handle exception
+            System.out.println(e);
+        }
         return null;
-
     }
 }

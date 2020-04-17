@@ -1,14 +1,24 @@
 package msultont.JFood.controller;
-import  msultont.JFood.*;
+
+import msultont.JFood.*;
+
+import java.util.ArrayList;
+
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/customer")
 @RestController
 public class CustomerController {
-    @RequestMapping("/")
+    @RequestMapping("")
     public String indexPage(@RequestParam(value="name", defaultValue="world") String name) {
         return "Hello " + name;
     }
+
+    @RequestMapping("/")
+    public ArrayList<Customer> getAllCustomer() {
+        return DatabaseCustomer.getCustomerDatabase();
+    }
+
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Customer loginCustomer(@RequestParam(value = "email") String email, 
