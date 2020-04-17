@@ -15,12 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FoodController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping("")
+    public String indexPage() {
+        return "Hello, you are in the food lists page";
+    }
+
+    @RequestMapping(value = "/listFood", method = RequestMethod.GET)
     public ArrayList<Food> getAllFood() {
         return DatabaseFood.getFoodDatabase();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/FoodId{id}", method = RequestMethod.GET)
     public Food getFoodById(@PathVariable int id) {
         Food food = null;
         try {
@@ -32,7 +37,7 @@ public class FoodController {
         return food;
     }
 
-    @RequestMapping(value = "/seller/{sellerId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/seller/SellerId{sellerId}", method = RequestMethod.GET)
     public ArrayList<Food> getFoodBySeller(@PathVariable int sellerId) {
         ArrayList<Food> foods = null;
         foods = DatabaseFood.getFoodBySeller(sellerId);
@@ -44,7 +49,7 @@ public class FoodController {
         return DatabaseFood.getFoodByCategory(category);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/addFood", method = RequestMethod.POST)
     public Food addFood(@RequestParam(value = "name") String name, 
                         @RequestParam(value = "price") int price, 
                         @RequestParam(value = "category") FoodCategory category, 

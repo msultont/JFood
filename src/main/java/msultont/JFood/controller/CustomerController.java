@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class CustomerController {
     @RequestMapping("")
-    public String indexPage(@RequestParam(value="name", defaultValue="world") String name) {
-        return "Hello " + name;
+    public String indexPage() {
+        return "Hello, you are in the customer page";
     }
 
     @RequestMapping("/")

@@ -33,23 +33,24 @@ public class DatabaseFood {
     }
 
     public static ArrayList<Food> getFoodBySeller(int sellerId) {
+        FOOD_FILTERED_BY_SELLER.clear();
         for (Food food : FOOD_DATABASE) {
             if (food.getSeller().getId() == sellerId) {
                 FOOD_FILTERED_BY_SELLER.add(food);
-                return FOOD_FILTERED_BY_SELLER;
             }
         }
-        return null;
+        return FOOD_FILTERED_BY_SELLER;
     }
 
     public static ArrayList<Food> getFoodByCategory(FoodCategory category) {
+        FOOD_FILTERED_BY_CATEGORY.clear();
         for (Food food : FOOD_DATABASE) {
             if (food.getCategory() == category) {
                 FOOD_FILTERED_BY_CATEGORY.add(food);
-                return FOOD_FILTERED_BY_CATEGORY;
+                
             }
         }
-        return null;
+        return FOOD_FILTERED_BY_CATEGORY;
     }
 
     /**

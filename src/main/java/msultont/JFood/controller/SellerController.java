@@ -15,8 +15,12 @@ import msultont.JFood.*;
 @RequestMapping("/seller")
 @RestController
 public class SellerController {
+    @RequestMapping("")
+    public String indexPage() {
+        return "Hello, you are in the seller page";
+    }
 
-    @RequestMapping("/")
+    @RequestMapping("/listSeller")
     public ArrayList<Seller> getAllSeller() {
         return DatabaseSeller.getSellerDatabase();
 
@@ -35,7 +39,7 @@ public class SellerController {
         
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/addSeller", method = RequestMethod.POST)
     public Seller addSeller(@RequestParam(value = "name") String name, 
                             @RequestParam(value = "email") String email,
                             @RequestParam(value = "phoneNumber") String phoneNumber,

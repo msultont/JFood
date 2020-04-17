@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class InvoiceController {
     @RequestMapping("")
+    public String indexPage() {
+        return "Hello, you are in the Invoice page";
+    }
+
+    @RequestMapping("/listInvoice")
     public ArrayList<Invoice> getAllInvoice() {
         return DatabaseInvoice.getInvoiceDatabase();
     }
@@ -82,7 +87,7 @@ public class InvoiceController {
     @RequestMapping(value = "/createCashInvoice", method = RequestMethod.POST)
     public Invoice addCashInvoice(@RequestParam(value = "foodIdList") ArrayList<Integer> foodIdList, 
                                   @RequestParam(value = "customerId") int customerId, 
-                                  @RequestParam(value = "deliveryFee") int deliveryFee) 
+                                  @RequestParam(value = "deliveryFee", required = false, defaultValue = "0") int deliveryFee) 
     {
         ArrayList<Food> newFood = new ArrayList<>();
         CashInvoice cashInvoice = null;
@@ -115,7 +120,7 @@ public class InvoiceController {
     @RequestMapping(value = "/createCashlessInvoice", method = RequestMethod.POST)
     public Invoice addCashlessInvoice (@RequestParam(value = "foodIdList") ArrayList<Integer> foodIdList, 
                                        @RequestParam(value = "customerId" )int customerId, 
-                                       @RequestParam(value = "promoCode") String promoCode) 
+                                       @RequestParam(value = "promoCode", required = false) String promoCode) 
     {
         ArrayList<Food> newFood = new ArrayList<>();
         CashlessInvoice cashlessInvoice = null;

@@ -15,7 +15,12 @@ import msultont.JFood.*;
 @RequestMapping("/promo")
 @RestController
 public class PromoController {
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping("")
+    public String indexPage() {
+        return "Hello, you are in the promo page";
+    }
+
+    @RequestMapping(value = "/listPromo", method = RequestMethod.GET)
     public ArrayList<Promo> getAllPromo() {
         return DatabasePromo.getPromoDatabase();
     }
@@ -25,7 +30,7 @@ public class PromoController {
         return DatabasePromo.getPromoByCode(promoCode);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/addPromo", method = RequestMethod.POST)
     public Promo addPromo(@RequestParam(value = "code") String code, 
                           @RequestParam(value = "discount") int discount, 
                           @RequestParam(value = "minPrice") int minPrice, 
