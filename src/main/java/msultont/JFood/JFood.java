@@ -31,6 +31,7 @@ public class JFood {
 
         try {
             DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId()+1, "promo1", 50000, 100000, true));
+            DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId()+1, "123asd321", 100000, 150000, true));
             
         } catch (PromoCodeAlreadyExistsException e) {
             //TODO: handle exception

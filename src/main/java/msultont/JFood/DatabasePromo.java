@@ -29,7 +29,7 @@ public class DatabasePromo {
 
     public static Promo getPromoByCode(String code) {
         for (Promo promo : PROMO_DATABASE) {
-            if (promo.getCode() == code) {
+            if (promo.getCode().equals(code) ) {
                 return promo;
             }
         }
