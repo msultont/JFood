@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import msultont.JFood.*;
 /**
- * SellerController
+ * This is all Seller's API for requesting the data into backend system.
+ *
+ * @author Muhammad Sulton Tauhid
+ * @version May 12th, 2020
  */
+
 @RequestMapping("/seller")
 @RestController
 public class SellerController {

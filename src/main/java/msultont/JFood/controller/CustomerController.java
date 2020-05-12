@@ -6,6 +6,13 @@ import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * This is all customer's API for requesting the data into backend system.
+ *
+ * @author Muhammad Sulton Tauhid
+ * @version May 12th, 2020
+ */
+
 @RequestMapping("/customer")
 @RestController
 public class CustomerController {

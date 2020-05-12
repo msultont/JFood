@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import msultont.JFood.*;
 
 /**
- * PromoController
+ * This is all promo's API for requesting the data into backend system.
+ *
+ * @author Muhammad Sulton Tauhid
+ * @version May 12th, 2020
  */
+
 @RequestMapping("/promo")
 @RestController
 public class PromoController {

@@ -5,10 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.regex.*;
 
 /**
- * The Customer class generate an object to create virtual customer for
+ * The model Customer class generate an object to create virtual customer for
  * restaurant called JFood. All information about customer data is generated
  * here.
- * 
  *
  * @author Muhammad Sulton Tauhid
  * @version February 27th, 2020
@@ -25,6 +24,11 @@ public class Customer {
 
     /**
      * Constructor for objects of class Customer
+     * @param id  customer's id
+     * @param name  customer's name
+     * @param email  customer's email
+     * @param password  customer's password
+     * @param joinDate  the date of customer first time join into restaurant
      */
     public Customer(int id, String name, String email, String password, Calendar joinDate) {
         this.id = id;
@@ -34,7 +38,14 @@ public class Customer {
         this.joinDate = joinDate;
     }
     /**
-     * 
+     * Override constructor version of class Customer
+     * @param id  customer's id
+     * @param name  customer's name
+     * @param email  customer's email
+     * @param password  customer's password
+     * @param year  the year of join date of customer
+     * @param month  the month of join date of customer
+     * @param dayOfMonth  the day-month-perspective of join date of customer
      */
     public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth) {
         this.id = id;
@@ -44,7 +55,11 @@ public class Customer {
         this.joinDate = new GregorianCalendar(year, month-1, dayOfMonth);
     }
     /**
-     * 
+     * Override constructor of class Customer with joinDate assign automatically by the system
+     * @param id  customer's id
+     * @param name  customer's name
+     * @param email  customer's email
+     * @param password  customer's password
      */
     public Customer(int id, String name, String email, String password) {
         this.id = id;
@@ -118,9 +133,10 @@ public class Customer {
     }
 
     /**
-     * This method will reassign the email of customer
+     * This method will reassign the email of customer. There is regex to give correct parameter of name convention to
+     * the system.
      * 
-     * @param email
+     * @param email  assign customer's email
      */
     public void setEmail(String email) {
         String pattern = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
@@ -137,7 +153,7 @@ public class Customer {
     /**
      * This method will reassign the password of customer
      * 
-     * @param password
+     * @param password  customer's password
      */
     public void setPassword(String password) {
         String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
@@ -153,14 +169,18 @@ public class Customer {
     /**
      * This method will reassign the joindate of customer to the restaurant
      * 
-     * @param joinDate
+     * @param joinDate  assign new join date of customer
      */
     public void setJoinDate(Calendar joinDate) {
         this.joinDate = joinDate;
     }
 
     /**
-     * 
+     * Reassign the join date of customer with specific year, month and day of month
+     *
+     * @param year  year's of join
+     * @param month  month's of join
+     * @param dayOfMonth  day's of join
      */
     public void setJoinDate(int year, int month, int dayOfMonth) {
         this.joinDate = new GregorianCalendar(year, month - 1, dayOfMonth);

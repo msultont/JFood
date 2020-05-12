@@ -1,10 +1,19 @@
 package msultont.JFood;
+
 /**
- * OngoingInvoiceAlreadyExistsException
+ * Exception class when specific invoice with status ongoing already exist in Invoice Database.
+ *
+ * @author Muhammad Sulton Tauhid
+ * @version May 12th, 2020
  */
+
 public class OngoingInvoiceAlreadyExistsException extends Exception {
     private Invoice invoice_error;
 
+    /**
+     *
+     * @param invoice_input  input invoice object.
+     */
     public OngoingInvoiceAlreadyExistsException(Invoice invoice_input) {
         super("Ongoing Invoice ID: ");
         this.invoice_error = invoice_input;

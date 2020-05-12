@@ -1,10 +1,10 @@
 package msultont.JFood;
 
 /**
- * Location class will generate the spesific location for JFood restaurant.
+ * This class will create a location for Seller class. The seller distributor will depend on this Location class.
  *
  * @author Muhammad Sulton Tauhid
- * @version February 27th, 2020
+ * @version May 12th, 2020
  */
 public class Location {
     // Instances Variables
@@ -14,6 +14,9 @@ public class Location {
 
     /**
      * Constructor for objects of class Location
+     * @param city  city
+     * @param description  location description
+     * @param province  province
      */
     public Location(String city, String province, String description) {
         this.city = city;
@@ -22,7 +25,7 @@ public class Location {
     }
 
     /**
-     * This method will return the province of the restaurant
+     * This method will return the province.
      *
      * @return province
      */
@@ -31,7 +34,7 @@ public class Location {
     }
 
     /**
-     * This method will return the city of restaurant
+     * This method will return the city.
      * 
      * @return city
      */
@@ -40,7 +43,7 @@ public class Location {
     }
 
     /**
-     * This method will return the description of the restaurant
+     * This method will return the description of the location.
      * 
      * @return description
      */
@@ -49,34 +52,34 @@ public class Location {
     }
 
     /**
-     * This method will reassign the province of the restaurant
+     * This method will reassign the province.
      * 
-     * @param province
+     * @param province  province
      */
     public void setProvince(String province) {
         this.province = province;
     }
 
     /**
-     * This method will reassign the city of the restaurant
+     * This method will reassign the city.
      * 
-     * @param city
+     * @param city  city
      */
     public void setCity(String city) {
         this.city = city;
     }
 
     /**
-     * This method will reassign the description of the restaurant
+     * This method will reassign the description of the location.
      * 
-     * @param description
+     * @param description  description of location.
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * This method will print all the variables data to the terminal
+     * This method will print Location information.
      */
     @Override
     public String toString() {

@@ -1,11 +1,10 @@
 package msultont.JFood;
 
 /**
- * Food class will generate the type of food and its name to the JFood
- * restaurant
+ * Food model to present detail information about food in the restaurant.
  *
  * @author Muhammad Sulton Tauhid
- * @version February 27th, 2020
+ * @version May 12th, 2020
  */
 public class Food {
     // Instances variable
@@ -16,7 +15,15 @@ public class Food {
     private FoodCategory category;
 
     /**
-     * Constructor for objects of class Food
+     * Food constructor.
+     *
+     * @param id food's id
+     * @param name food's name
+     * @param seller food's seller distributor. Must have Seller object.
+     * @param price food's price
+     * @param category food's category. Based on FoodCategory enum class.
+     * @see FoodCategory
+     * @see Seller
      */
     public Food(int id, String name, Seller seller, int price, FoodCategory category) {
         this.id = id;
@@ -27,7 +34,7 @@ public class Food {
     }
 
     /**
-     * This method will return the id of the food
+     * Return food's id.
      *
      * @return id
      */
@@ -36,7 +43,7 @@ public class Food {
     }
 
     /**
-     * This method will return the name of the food
+     * Return food's name.
      * 
      * @return name
      */
@@ -45,7 +52,7 @@ public class Food {
     }
 
     /**
-     * This method will return the spesific information of the seller
+     * Return food's seller distributor
      * 
      * @return seller
      */
@@ -54,7 +61,7 @@ public class Food {
     }
 
     /**
-     * This method will return the price of the food
+     * Return food's price.
      * 
      * @return price
      */
@@ -63,7 +70,7 @@ public class Food {
     }
 
     /**
-     * This method will return the category of the food
+     * Return food's category.
      * 
      * @return category
      */
@@ -72,7 +79,7 @@ public class Food {
     }
 
     /**
-     * This method will reassign the id of the food
+     * Assign new food's id.
      * 
      * @param id
      */
@@ -81,17 +88,16 @@ public class Food {
     }
 
     /**
-     * This method will reassign the name of the food
+     * Assign new food's name.
      * 
-     * @param id
+     * @param name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * This method will reassign the seller's information by changing the object of
-     * Seller
+     * Assign new food's seller distributor object.
      * 
      * @param seller
      */
@@ -100,7 +106,7 @@ public class Food {
     }
 
     /**
-     * This method will reassign the price of the food
+     * Assign new food's price.
      * 
      * @param price
      */
@@ -109,7 +115,7 @@ public class Food {
     }
 
     /**
-     * This method will reassign the category of the food
+     * Assign new food's category.
      * 
      * @param category
      */
@@ -118,7 +124,7 @@ public class Food {
     }
 
     /**
-     * This method will print all the variables data to the terminal
+     * Override toString() method to print all information about this food.
      */
     @Override
     public String toString() {

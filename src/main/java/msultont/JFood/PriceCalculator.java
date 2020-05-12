@@ -1,5 +1,11 @@
 package msultont.JFood;
 
+/**
+ * This is multithreaded class to specifically calculate the setTotalPrice() method in Invoice class.
+ *
+ * @version May 12th, 2020
+ */
+
 public class PriceCalculator implements Runnable{
     private Thread t;
     private Invoice invoice;

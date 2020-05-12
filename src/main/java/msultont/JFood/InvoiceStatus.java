@@ -1,10 +1,10 @@
 package msultont.JFood;
 
 /**
- * Enumeration class InvoiceStatus - write a description of the enum class here
+ * All list for invoice status.
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author Muhammad Sulton Tauhid
+ * @version May 12th, 2020
  */
 public enum InvoiceStatus {
     ONGOING("ONGOING"), FINISHED("FINISHED"), CANCELED("CANCELED");

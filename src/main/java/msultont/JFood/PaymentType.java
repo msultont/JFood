@@ -1,10 +1,10 @@
 package msultont.JFood;
 
 /**
- * Enumeration class PaymentType - write a description of the enum class here
+ * All list for payment type.
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author Muhammad Sulton Tauhid
+ * @version May 12th, 2020
  */
 public enum PaymentType {
     Cashless("Cashless"), Cash("Cash");
@@ -15,9 +15,6 @@ public enum PaymentType {
         this.type = type;
     }
 
-    /**
-     * 
-     */
     public String toString() {
         return type;
     }

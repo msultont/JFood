@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+
 /**
- * This class will generate the invoice receipt to the customer after they have
- * finished doing transaction in JFood restaurant.
+ * Invoice abstract class provides general information to be used by its inherited class: CashInvoice and Cashless
+ * Invoice. This class will create invoice after there is transaction done in the restaurant.
  *
  * @author Muhammad Sulton Tauhid
- * @version February 27th, 2020
+ * @version May 12th, 2020
  */
 public abstract class Invoice {
     // Instances Variables
@@ -21,10 +22,13 @@ public abstract class Invoice {
     private Customer customer;
     private InvoiceStatus invoiceStatus;
     private SimpleDateFormat ft = new SimpleDateFormat("dd MMMM yyyy 'at' HH:mm:ss");
-    protected String str;
+    protected String str; // variable to save the date format.
 
     /**
      * Constructor for objects of class Invoice
+     * @param id  Invoice id
+     * @param foods  Lists of all food in the invoice.
+     * @param customer  the customer who does transaction within the invoice.
      */
     public Invoice(int id, ArrayList<Food> foods, Customer customer) {
         this.id = id;
@@ -45,15 +49,15 @@ public abstract class Invoice {
     }
 
     /**
-     * 
-     * @return
+     * Return lists of all food within this invoice.
+     * @return foods
      */
     public ArrayList<Food> getFoods() {
         return foods;
     }
 
     /**
-     * This method will return the date of the invoice come out
+     * This method will return the date of the first time this invoice is created.
      * 
      * @return date
      */
@@ -62,7 +66,7 @@ public abstract class Invoice {
     }
     
     /**
-     * This method will return the total price all of the transaction in the invoice
+     * This method will return the total price all of the transaction in the invoice.
      * 
      * @return totalPrice
      */
@@ -71,10 +75,8 @@ public abstract class Invoice {
     }
 
     /**
-     * This method will return the spesific customer in the invoice. This will
-     * return Customer data types which means it will call the object of the
-     * Customer
-     * 
+     * This method will return the spesific customer in the invoice doing the transaction.
+     *
      * @return customer
      */
     public Customer getCustomer() {
@@ -82,14 +84,15 @@ public abstract class Invoice {
     }
 
     /**
-     * 
-     * @param id
+     * Payment type will be inherited whether CashInvoice or CashlessInvoice.
+     * @see PaymentType
      */
     public abstract PaymentType getPaymentType();
 
     /**
-     * 
-     * @return
+     * Return the invoice status of the invoice.
+     * @return invoiceStatus
+     * @see InvoiceStatus
      */
     public InvoiceStatus getInvoiceStatus() {
         return invoiceStatus;
@@ -98,23 +101,22 @@ public abstract class Invoice {
     /**
      * This method will reasign the id of the invoice
      * 
-     * @param id
+     * @param id  set invoice id
      */
     public void setId(int id) {
         this.id = id;
     }
 
     /**
-     * This method will reasign the id of the food of the invoice
-     * 
-     * @param foods
+     * This method will add new food into the list of foods of customer invoice transaction.
+     * @param food
      */
     public void setFoods(Food food) {
         foods.add(food);
     }
 
     /**
-     * This method will reasign the date of the invoice come out
+     * This method will reasign the date of the invoice creation time using Calendar object.
      * 
      * @param date
      */
@@ -123,16 +125,20 @@ public abstract class Invoice {
     }
 
     /**
-     * 
+     * Specify the date based on year, month and dayOfMonth.
+     *
+     * @param year  current year
+     * @param month current month
+     * @param dayOfMonth  current day of date based on date of month.
+     * @see GregorianCalendar
      */
     public void setDate(int year, int month, int dayOfMonth) {
         this.date = new GregorianCalendar(year, month-1, dayOfMonth);
     }
 
     /**
-     * This method will reassign the total price of all transaction in the invoice
-     * 
-     * @param totalPrice
+     * This method will reassign the total price of all transaction in the invoice.
+     *
      */
     public abstract void setTotalPrice();
 
@@ -140,14 +146,16 @@ public abstract class Invoice {
      * This method will reassign the customer in the invoice. This will call another
      * object to change the current customer
      * 
-     * @param customer
+     * @param customer  change the customer within the invoice.
      */
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
     /**
-     * 
+     * Reassign the invoice status based of transaction condition.
+     * @param invoiceStatus  Change invoice status based of InvoiceStatus enum
+     * @see InvoiceStatus
      */
     public void setInvoiceStatus(InvoiceStatus invoiceStatus) {
         this.invoiceStatus = invoiceStatus;

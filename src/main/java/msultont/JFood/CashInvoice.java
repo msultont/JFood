@@ -2,10 +2,10 @@ package msultont.JFood;
 import java.util.ArrayList;
 
 /**
- * Write a description of class CashInvoice here.
+ * This Invoice's child class is spesifically to CashInvoice.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Muhammad Sulton Tauhid
+ * @version May 12th, 2020
  */
 public class CashInvoice extends Invoice {
     private final static PaymentType PAYMENT_TYPE = PaymentType.Cash;
@@ -13,15 +13,20 @@ public class CashInvoice extends Invoice {
 
     /**
      * Constructor for objects of class CashInvoice
+     * @param id  invoice's id
+     * @param foods  lists of food
+     * @param customer  the current customer doing transaction
      */
     public CashInvoice(int id, ArrayList<Food> foods, Customer customer) {
         super(id, foods, customer);
     }
 
     /**
-     * 
-     * @param
-     * @return
+     * Override constructor with delivery fee
+     * @param id  invoice's id
+     * @param foods  lists of food
+     * @param customer  the current customer doing transaction
+     * @param deliveryFee the price of delivery fee
      */
     public CashInvoice(int id, ArrayList<Food> foods, Customer customer,
             int deliveryFee) {
@@ -30,31 +35,31 @@ public class CashInvoice extends Invoice {
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     *
-     * @return the sum of x and y
+     * Return the payment type of this invoice
+     * @return PAYMENT_TYPE
      */
     public PaymentType getPaymentType() {
         return PAYMENT_TYPE;
     }
 
     /**
-     * 
+     * Return this object delivery fee
+     * @return deliveryFee
      */
     public int getDeliveryFee() {
         return deliveryFee;
     }
 
     /**
-     * 
+     * Assign new delivery fee into this object
+     * @param deliveryFee  this object delivery fee
      */
     public void setDeliveryFee(int deliveryFee) {
         this.deliveryFee = deliveryFee;
     }
 
     /**
-     * 
+     * Calculate all the food's price into the invoice with/without the delivery fee
      */
     public void setTotalPrice() {
         if (super.totalPrice == 0) {
@@ -78,9 +83,6 @@ public class CashInvoice extends Invoice {
         }
     }
 
-    /**
-     * 
-     */
     @Override
     public String toString() {
         if (getDeliveryFee() > 0) {

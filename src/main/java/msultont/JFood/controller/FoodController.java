@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * FoodController
+ * This is all food's API for requesting the data into backend system.
+ *
+ * @author Muhammad Sulton Tauhid
+ * @version May 12th, 2020
  */
+
 @RequestMapping("/food")
 @RestController
 public class FoodController {

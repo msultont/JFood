@@ -2,24 +2,41 @@ package msultont.JFood;
 import java.util.ArrayList;
 
 /**
- * Write a description of class DatabaseSeller here.
+ * This is database Seller class. Databases' class is intended as single object only.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Muhammad Sulton Tauhid
+ * @version May 22th, 2020
  */
 public class DatabaseSeller {
-    // instance variables - replace the example below with your own
+    // Global Variables
     private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<>();
     private static int lastId = 0;
 
+    /**
+     * Return all Seller object in the array.
+     *
+     * @return SELLER_DATABASE
+     */
     public static ArrayList<Seller> getSellerDatabase() {
        return SELLER_DATABASE;
     }
 
+    /**
+     * Return the last ID of Seller class has been put into database
+     *
+     * @return lastId
+     */
     public static int getLastId() {
         return lastId;
     }
 
+    /**
+     * Return the seller by its id.
+     *
+     * @param id  seller's id
+     * @return seller
+     * @throws SellerNotFoundException  if no seller's id, then throw this exception
+     */
     public static Seller getSellerById(int id) throws SellerNotFoundException {
         for (Seller seller : SELLER_DATABASE) {
             if (seller.getId() == id) {
@@ -30,7 +47,10 @@ public class DatabaseSeller {
     }
 
     /**
+     * Add new seller's object into database.
      *
+     * @param seller  Seller's object
+     * @return true indicating success
      */
     public static boolean addSeller(Seller seller) {
         lastId = seller.getId();
@@ -39,7 +59,11 @@ public class DatabaseSeller {
     }
 
     /**
-     * 
+     * Remove seller's object from database.
+     *
+     * @param id  seller's id
+     * @throws SellerNotFoundException  throw exception if no seller's id
+     * @return true if success
      */
     public static boolean removeSeller(int id) throws SellerNotFoundException {
         for (Seller seller : SELLER_DATABASE) {

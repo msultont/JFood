@@ -5,7 +5,7 @@ package msultont.JFood;
  * restaurant.
  *
  * @author Muhammad Sulton Tauhid
- * @version February 27th, 2020
+ * @version May 12th, 2020
  */
 public class Seller {
 
@@ -18,6 +18,12 @@ public class Seller {
 
     /**
      * Constructor for objects of class Seller
+     *
+     * @param id  seller id
+     * @param name  seller name
+     * @param email  seller email
+     * @param phoneNumber  seller phone number
+     * @param location  seller's location
      */
     public Seller(int id, String name, String email, String phoneNumber, Location location) {        
         this.id = id;
@@ -77,7 +83,7 @@ public class Seller {
     /**
      * This method will reassign the id of the seller or supplier
      * 
-     * @param id
+     * @param id  seller id
      */
     public void setId(int id) {
         this.id = id;
@@ -86,7 +92,7 @@ public class Seller {
     /**
      * This method will reassign the name of the seller or supplier
      * 
-     * @param name
+     * @param name  seller name
      */
     public void setName(String name) {
         this.name = name;
@@ -95,7 +101,7 @@ public class Seller {
     /**
      * This method will reassign the email of the seller or supplier
      * 
-     * @param email
+     * @param email  seller email
      */
     public void setEmail(String email) {
         this.email = email;
@@ -104,7 +110,7 @@ public class Seller {
     /**
      * This method will reassign the phone number of the seller or supplier
      * 
-     * @param phoneNumber
+     * @param phoneNumber  seller phone number
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
@@ -115,7 +121,7 @@ public class Seller {
      * parameter's data type is using * Location class so it must be set to the new
      * object
      * 
-     * @param location
+     * @param location  seller location
      */
     public void setLocation(Location location) {
         this.location = location;

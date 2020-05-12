@@ -2,24 +2,32 @@ package msultont.JFood;
 import java.util.ArrayList;
 
 /**
- * Write a description of class CashlessInvoice here.
+ * This Invoice's child class is spesifically to CashlessInvoice.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Muhammad Sulton Tauhid
+ * @version May 12th, 2020
  */
 public class CashlessInvoice extends Invoice {
+    // Instances variables and static variable
     private final static PaymentType PAYMENT_TYPE = PaymentType.Cashless;
     private Promo promo;
 
     /**
      * Constructor for objects of class CashlessInvoice
+     * @param id  invoice's id
+     * @param foods  lists of food
+     * @param customer  the current customer doing transaction
      */
     public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer) {
         super(id, foods, customer);
     }
 
     /**
-     * 
+     * Override constructor with promo object
+     * @param id  invoice's id
+     * @param foods  lists of food
+     * @param customer  the current customer doing transaction
+     * @param promo  promo object
      */
     public CashlessInvoice(int id, ArrayList<Food> foods,  Customer customer,
             Promo promo) {
@@ -28,31 +36,31 @@ public class CashlessInvoice extends Invoice {
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     *
-     * @return the sum of x and y
+     * Return the payment type of this invoice
+     * @return PAYMENT_TYPE
      */
     public PaymentType getPaymentType() {
         return PAYMENT_TYPE;
     }
 
     /**
-     * 
+     * Return promo object
+     * @return promo
      */
     public Promo getPromo() {
         return promo;
     }
 
     /**
-     * 
+     * Assign new promo object to the invoice
+     * @param promo  new promo's object
      */
     public void setPromo(Promo promo) {
         this.promo = promo;
     }
 
     /**
-     * 
+     * Calculate all the food's price into the invoice with/without the promo discount
      */
     public void setTotalPrice() {
         if (super.totalPrice == 0) {
@@ -63,7 +71,7 @@ public class CashlessInvoice extends Invoice {
             }
             super.totalPrice = super.totalPrice - super.previousTotalPrice;
             super.previousTotalPrice = super.totalPrice;
-            if (getPromo() != null && getPromo().getActive() == true && super.getTotalPrice() > getPromo().getMinPrice())
+            if (getPromo() != null && getPromo().getActive() && super.getTotalPrice() > getPromo().getMinPrice())
                 super.totalPrice = super.previousTotalPrice  - getPromo().getDiscount();
                 // Unless the top logic, this will execute another process.
             
@@ -76,7 +84,7 @@ public class CashlessInvoice extends Invoice {
             }
             super.totalPrice = super.totalPrice - super.previousTotalPrice;
             super.previousTotalPrice = super.totalPrice;
-            if (getPromo() != null && getPromo().getActive() == true && super.getTotalPrice() > getPromo().getMinPrice())
+            if (getPromo() != null && getPromo().getActive() && super.getTotalPrice() > getPromo().getMinPrice())
                 super.totalPrice = super.previousTotalPrice  - getPromo().getDiscount();
                 // Unless the top logic, this will execute another process.
         }
@@ -84,9 +92,6 @@ public class CashlessInvoice extends Invoice {
         
     }
 
-    /**
-     * 
-     */
     @Override
     public String toString() {
         if (getPromo() != null && getPromo().getActive() == true && super.totalPrice > promo.getMinPrice()) {
