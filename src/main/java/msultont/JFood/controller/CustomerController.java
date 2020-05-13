@@ -41,11 +41,16 @@ public class CustomerController {
                                 @RequestParam(value="email") String email,
                                 @RequestParam(value="password") String password)
     {
-        Customer customer = new Customer(DatabaseCustomer.getLastId()+1, name, email, password);
-        try {
-            DatabaseCustomer.addCustomer(customer);
-        } catch (EmailAlreadyExistsException e) {
-            e.getMessage();
+        Customer customer = null;
+        if (name.equals("") || email.equals("") || password.equals(""))
+            return customer;
+        else {
+            customer = new Customer(DatabaseCustomer.getLastId()+1, name, email, password);
+            try {
+                DatabaseCustomer.addCustomer(customer);
+            } catch (EmailAlreadyExistsException e) {
+                e.getMessage();
+            }
         }
         return customer;
     }
