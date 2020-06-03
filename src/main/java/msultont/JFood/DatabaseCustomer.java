@@ -1,5 +1,12 @@
 package msultont.JFood;
+
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
 
 /**
  * This customer database to save all customer information
@@ -8,8 +15,13 @@ import java.util.ArrayList;
  * @version May 12th, 2020
  */
 public class DatabaseCustomer {
+
     // Global Variables
     private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<>();
+    private static Connection connection;
+    private static PreparedStatement prpStatement = null;
+    private static Statement statement = null;
+    private static Timestamp timestamp;
     private static int lastId = 0;
 
     /**
@@ -25,6 +37,21 @@ public class DatabaseCustomer {
      * @return lastId
      */
     public static int getLastId() {
+        connection = DatabaseConnection.connection();
+        String sql = "SELECT id FROM public.customer;";
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()) {
+                lastId = rs.getInt("id");
+            }
+            rs.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
         return lastId;
     }
 
@@ -52,13 +79,39 @@ public class DatabaseCustomer {
      * database.
      */
     public static boolean addCustomer(Customer customer) throws EmailAlreadyExistsException {
+        
+        connection = DatabaseConnection.connection();
+        timestamp = new Timestamp(customer.getJoinDate().getTimeInMillis());
+        String sql = "INSERT INTO customer" +  
+                     " (id, name, email, password, join_date)" + 
+                     " VALUES" + 
+                     " (?,?,?,?,?);"; 
+        try {
+            prpStatement = connection.prepareStatement(sql);
+            prpStatement.setInt(1, customer.getId());
+            prpStatement.setString(2, customer.getName());
+            prpStatement.setString(3, customer.getEmail());
+            prpStatement.setString(4, customer.getPassword());
+            prpStatement.setObject(5, timestamp);;
+            prpStatement.executeUpdate();
+            prpStatement.close();
+            connection.commit();
+            connection.close();
+
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        lastId = customer.getId();
+        System.out.println("Records created successfully");
+        /*
         for (Customer customer1 : CUSTOMER_DATABASE) {
             if (customer1.getEmail().equals(customer.getEmail())) {
                 throw new EmailAlreadyExistsException(customer);
             }
         }
         CUSTOMER_DATABASE.add(customer);
-        lastId = customer.getId();
+        */
         return true;
     }
 
