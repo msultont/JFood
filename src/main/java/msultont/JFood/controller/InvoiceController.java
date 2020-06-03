@@ -39,7 +39,7 @@ public class InvoiceController {
 
     }
 
-    @RequestMapping("/customer/{customerId}")
+    @RequestMapping(value = "/customer/{customerId}", method = RequestMethod.GET)
     public ArrayList<Invoice> getInvoiceByCustomer(@PathVariable int customerId) {
         return DatabaseInvoice.getInvoiceByCustomer(customerId);
     }
@@ -90,6 +90,15 @@ public class InvoiceController {
             }
         }
         return null;
+    }
+
+    @RequestMapping(value = "/changeStatus/{customerId}", method = RequestMethod.PUT)
+    public boolean invoiceChangeStatus(@RequestParam(value = "invoiceStatus") InvoiceStatus invoiceStatus,
+                                       @PathVariable int customerId) {
+
+        Boolean result = DatabaseInvoice.changeInvoiceStatusByCustomerId(customerId, invoiceStatus);
+        return result;
+
     }
 
     @RequestMapping(value = "/createCashInvoice", method = RequestMethod.POST)
