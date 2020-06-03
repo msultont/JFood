@@ -76,14 +76,17 @@ public class DatabaseInvoice {
      * @throws OngoingInvoiceAlreadyExistsException  throw if current invoice object has already added into the database.
      */
     public static boolean addInvoice(Invoice invoice) throws OngoingInvoiceAlreadyExistsException {
-        for (Invoice invoice1 : DATABASE_INVOICE) {
-            if (invoice1.getCustomer().getId() == invoice.getCustomer().getId() && invoice1.getInvoiceStatus().equals(InvoiceStatus.ONGOING)) {
-                throw new OngoingInvoiceAlreadyExistsException(invoice);
-            }   
-        }
+        if (!getInvoiceDatabase().isEmpty()) {
+            for (Invoice invoice1 : DATABASE_INVOICE) {
+                if (invoice1.getCustomer().getId() == invoice.getCustomer().getId() && invoice1.getInvoiceStatus().equals(InvoiceStatus.ONGOING)) {
+                    throw new OngoingInvoiceAlreadyExistsException(invoice);
+                }   
+            } 
+        } 
         DATABASE_INVOICE.add(invoice);
         lastId = invoice.getId();
         return true;
+        
     }
 
     /**
@@ -109,9 +112,22 @@ public class DatabaseInvoice {
      * @param invoiceStatus  new status wants to be changed
      * @return true if success, false if the invoice isnt at ongoing status/state.
      */
-    public static boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus) {
+    public static boolean changeInvoiceStatusById(int id, InvoiceStatus invoiceStatus) {
         for (Invoice invoice: DATABASE_INVOICE) {
-            if (invoice.getId() == id && invoice.getInvoiceStatus() == InvoiceStatus.ONGOING) {
+            if (invoice.getId() == id && invoice.getInvoiceStatus().equals(InvoiceStatus.ONGOING)) {
+                invoice.setInvoiceStatus(invoiceStatus);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 
+     */
+    public static boolean changeInvoiceStatusByCustomerId(int customerId, InvoiceStatus invoiceStatus) {
+        for (Invoice invoice : getInvoiceByCustomer(customerId)) {
+            if (invoice.getInvoiceStatus().equals(InvoiceStatus.ONGOING)) {
                 invoice.setInvoiceStatus(invoiceStatus);
                 return true;
             }
