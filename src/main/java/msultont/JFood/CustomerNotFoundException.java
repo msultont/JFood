@@ -7,6 +7,7 @@ package msultont.JFood;
  * @version May 12th, 2020
  */
 
+@SuppressWarnings("serial")
 public class CustomerNotFoundException extends Exception{
     private int customer_error;
 

@@ -7,6 +7,7 @@ package msultont.JFood;
  * @version May 12th, 2020
  */
 
+@SuppressWarnings("serial")
 public class EmailAlreadyExistsException extends Exception{
     private Customer customer_error;
 

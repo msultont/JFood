@@ -7,6 +7,7 @@ package msultont.JFood;
  * @version May 12th, 2020
  */
 
+@SuppressWarnings("serial")
 public class FoodNotFoundException extends Exception {
     // Instances variable to save food's id.
     private int food_error;
