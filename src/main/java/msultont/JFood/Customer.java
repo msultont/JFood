@@ -1,6 +1,8 @@
 package msultont.JFood;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.regex.*;
 
@@ -21,6 +23,26 @@ public class Customer {
     private String password;
     private Calendar joinDate;
     private SimpleDateFormat ft = new SimpleDateFormat("dd MMMM yyyy");
+
+    /**
+     * 
+     * @param id
+     * @param name
+     * @param email
+     * @param password
+     * @param joinDate
+     */
+    public Customer(int id, String name, String email, String password, Timestamp joinDate) {
+        Calendar calendarConverter = Calendar.getInstance();
+        calendarConverter.setTimeInMillis(joinDate.getTime());
+        calendarConverter.setTimeZone(TimeZone.getTimeZone("Asia/Jakarta"));
+
+        this.id = id;
+        this.name = name;
+        setEmail(email);
+        setPassword(password); 
+        this.joinDate = calendarConverter;
+    }
 
     /**
      * Constructor for objects of class Customer

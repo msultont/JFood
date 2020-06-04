@@ -35,7 +35,6 @@ public class FoodController {
         try {
             food = DatabaseFood.getFoodById(id);
         } catch (FoodNotFoundException e) {
-            //TODO: handle exception
             System.out.println(e);
         }
         return food;
