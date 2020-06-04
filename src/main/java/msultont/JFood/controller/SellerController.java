@@ -36,7 +36,6 @@ public class SellerController {
         try {
             seller = DatabaseSeller.getSellerById(id); 
         } catch (SellerNotFoundException e) {
-            //TODO: handle exception
             System.out.println(e);
         }
         return seller;
@@ -55,7 +54,6 @@ public class SellerController {
         try {
             DatabaseSeller.addSeller(seller);
         } catch (Exception e) {
-            //TODO: handle exception
             e.printStackTrace();
         }
         return seller;

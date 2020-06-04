@@ -32,7 +32,6 @@ public class InvoiceController {
         try {
             invoice = DatabaseInvoice.getInvoiceById(id);
         } catch (InvoiceNotFoundException e) {
-            //TODO: handle exception
             System.out.println(e);
         }
         return invoice;
@@ -62,7 +61,6 @@ public class InvoiceController {
         try {
             DatabaseInvoice.removeInvoice(id);
         } catch (InvoiceNotFoundException e) {
-            //TODO: handle exception
             System.out.println(e);
         }
         return true;
@@ -77,7 +75,6 @@ public class InvoiceController {
                 newFood.add(DatabaseFood.getFoodById(counter));
             }
         } catch (FoodNotFoundException e) {
-            //TODO: handle exception
             System.out.println(e);
         }
         for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(customerId)) {
@@ -113,7 +110,6 @@ public class InvoiceController {
                 newFood.add(DatabaseFood.getFoodById(counter));
             }
         } catch (FoodNotFoundException e) {
-            //TODO: handle exception
             System.out.println(e);
         }
 
@@ -121,14 +117,12 @@ public class InvoiceController {
             cashInvoice = new CashInvoice(DatabaseInvoice.getLastId()+1, newFood, DatabaseCustomer.getCustomerById(customerId), deliveryFee);
             cashInvoice.setTotalPrice();
         } catch (CustomerNotFoundException e) {
-            //TODO: handle exception
             System.out.println(e);
         }
         try {
             DatabaseInvoice.addInvoice(cashInvoice);
             return cashInvoice;
         } catch (OngoingInvoiceAlreadyExistsException e) {
-            //TODO: handle exception
             System.out.println(e);
         }
         return null;
@@ -146,7 +140,6 @@ public class InvoiceController {
                 newFood.add(DatabaseFood.getFoodById(counter));
             }
         } catch (FoodNotFoundException e) {
-            //TODO: handle exception
             System.out.println(e);
         }
         try {
@@ -154,14 +147,12 @@ public class InvoiceController {
             cashlessInvoice.setTotalPrice();
             
         } catch (CustomerNotFoundException e) {
-            //TODO: handle exception
             System.out.println(e);
         }
         try {
             DatabaseInvoice.addInvoice(cashlessInvoice);
             return cashlessInvoice;
         } catch (OngoingInvoiceAlreadyExistsException e) {
-            //TODO: handle exception
             System.out.println(e);
         }
         return null;
