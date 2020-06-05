@@ -36,27 +36,44 @@ public class SellerController {
         try {
             seller = DatabaseSeller.getSellerById(id); 
         } catch (SellerNotFoundException e) {
-            System.out.println(e);
+            System.err.println(e.getMessage());
         }
         return seller;
         
     }
 
     @RequestMapping(value = "/addSeller", method = RequestMethod.POST)
-    public Seller addSeller(@RequestParam(value = "name") String name, 
+    public boolean addSeller(@RequestParam(value = "name") String name, 
                             @RequestParam(value = "email") String email,
                             @RequestParam(value = "phoneNumber") String phoneNumber,
-                            @RequestParam(value = "province") String province, 
-                            @RequestParam(value = "city") String city, 
-                            @RequestParam(value = "description") String description) 
+                            @RequestParam(value = "city") String city) 
     {
-        Seller seller = new Seller(DatabaseSeller.getLastId()+1, name, email, phoneNumber, new Location(city, province, description));
+        Seller seller = null;
         try {
-            DatabaseSeller.addSeller(seller);
-        } catch (Exception e) {
-            e.printStackTrace();
+            seller = new Seller(DatabaseSeller.getLastId()+1, name, email, phoneNumber, DatabaseLocation.getLocationByCity(city));
+            
+        } catch (LocationNotFoundException e) {
+            System.err.println(e.getMessage());
         }
-        return seller;
+
+        if (seller != null) {
+            DatabaseSeller.addSeller(seller);
+            return true;
+        }
+
+        return false;
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public boolean removeSeller(@RequestParam(value = "seller_id") int seller_id) {
+        boolean sql_result = false;
+        try {
+            sql_result = DatabaseSeller.removeSeller(seller_id);
+        } catch (SellerNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
+        return sql_result;
+
     }
     
 }
