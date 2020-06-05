@@ -46,6 +46,8 @@ public class DatabaseCustomer {
             rs.close();
             connection.close();   
         } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
         return CUSTOMER_DATABASE;
     }
@@ -124,11 +126,12 @@ public class DatabaseCustomer {
     public static boolean removeCustomer(int id) throws CustomerNotFoundException {
         
         connection = DatabaseConnection.connection();
+        int sql_result = 0;
         String sql = "DELETE from public.customer WHERE id = ?"; 
         try {
             prpStatement = connection.prepareStatement(sql);
             prpStatement.setInt(1, id);
-            prpStatement.executeUpdate();
+            sql_result = prpStatement.executeUpdate();
             prpStatement.close();
             connection.commit();
             connection.close();
@@ -137,7 +140,12 @@ public class DatabaseCustomer {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
-        return true;
+
+        if (sql_result == 1) {
+            return true;
+        }
+
+        throw new CustomerNotFoundException(id);
         
         /*
         for (Customer customer : CUSTOMER_DATABASE) {

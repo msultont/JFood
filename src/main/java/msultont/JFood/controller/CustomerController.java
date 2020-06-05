@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/customer")
 @RestController
 public class CustomerController {
+
     @RequestMapping("")
     public String indexPage() {
         return "Hello, you are in the customer page";
@@ -26,6 +27,16 @@ public class CustomerController {
         return DatabaseCustomer.getCustomerDatabase();
     }
 
+    @RequestMapping("/{id}")
+    public Customer getCustomerById(@PathVariable int id) {
+        Customer customer = null;
+        try {
+            customer = DatabaseCustomer.getCustomerById(id);
+        } catch (CustomerNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
+        return customer;
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Customer loginCustomer(@RequestParam(value = "email") String email, 
@@ -33,6 +44,13 @@ public class CustomerController {
     {
         Customer customer = null;
         customer = DatabaseCustomer.customerLogin(email, password);
+
+        if (customer != null) {
+            System.out.println("Login Successfull");
+            return customer;
+        }
+
+        System.out.println("Login Unsuccessfull");
         return customer;
     }
 
@@ -49,22 +67,24 @@ public class CustomerController {
             try {
                 DatabaseCustomer.addCustomer(customer);
             } catch (EmailAlreadyExistsException e) {
-                e.getMessage();
+                System.err.println(e.getMessage());
             }
         }
         return customer;
     }
 
-    @RequestMapping("/{id}")
-    public Customer getCustomerById(@PathVariable int id) {
-        Customer customer = null;
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public boolean deleteCustomer(@RequestParam(value = "customer_id") int customer_id) {
+        boolean sql_result = false;
         try {
-            customer = DatabaseCustomer.getCustomerById(id);
+            sql_result = DatabaseCustomer.removeCustomer(customer_id);
         } catch (CustomerNotFoundException e) {
-            e.getMessage();
+            System.err.println(e.getMessage());
         }
-        return customer;
-    }
+        return sql_result;
+    } 
+
+    
 
     
 
