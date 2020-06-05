@@ -147,14 +147,6 @@ public class DatabaseCustomer {
 
         throw new CustomerNotFoundException(id);
         
-        /*
-        for (Customer customer : CUSTOMER_DATABASE) {
-            if (customer.getId() == id) {
-                CUSTOMER_DATABASE.remove(customer);
-            }
-        }
-        throw new CustomerNotFoundException(id);
-        */
     }
 
     /**

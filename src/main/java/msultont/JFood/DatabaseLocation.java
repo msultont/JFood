@@ -48,13 +48,13 @@ public class DatabaseLocation {
     /**
      * 
      */
-    public static Location getLocationByCity(String city) {
+    public static Location getLocationByCity(String city) throws LocationNotFoundException{
         
         for (Location location : getLocationDatabases()) {
             if (location.getCity().equals(city))
                 return location;
         }
-        return null;
+        throw new LocationNotFoundException(city);
     }
     
 }
