@@ -1,7 +1,6 @@
 package msultont.JFood;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,7 +11,6 @@ public class DatabaseLocation {
     //Global Variables
     private static ArrayList<Location> LOCATION_DATABASES = new ArrayList<>();
     private static Connection connection;
-    private static PreparedStatement prpStatement = null;
     private static Statement statement = null;
 
     /**

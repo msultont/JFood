@@ -23,6 +23,7 @@ public class JFood {
      * @param args
      */
     public static void main(String[] args) {
+        /*
         Location location1 = new Location("Tangerang", "Banten", "Pusat");
         Location location2 = new Location("Depok", "Jawa Barat", "Cabang-pusat");
 
@@ -42,6 +43,7 @@ public class JFood {
         } catch (PromoCodeAlreadyExistsException e) {
             e.printStackTrace();
         }
+        */
         
         SpringApplication.run(JFood.class, args);
 

@@ -21,9 +21,19 @@ public class InvoiceController {
         return "Hello, you are in the Invoice page";
     }
 
-    @RequestMapping("/listInvoice")
+    @RequestMapping("/listInvoiceOngoing")
     public ArrayList<Invoice> getAllInvoice() {
         return DatabaseInvoice.getInvoiceDatabase();
+    }
+
+    @RequestMapping("/listInvoiceCanceled")
+    public ArrayList<Invoice> getAllInvoiceCanceled() {
+        return DatabaseInvoice.getInvoiceDatabaseCanceled();
+    }
+
+    @RequestMapping("/listInvoiceFinished")
+    public ArrayList<Invoice> getAllInvoiceFinished() {
+        return DatabaseInvoice.getInvoiceDatabaseFinished();
     }
 
     @RequestMapping("/{id}")
@@ -94,6 +104,7 @@ public class InvoiceController {
                                        @PathVariable int customerId) {
 
         Boolean result = DatabaseInvoice.changeInvoiceStatusByCustomerId(customerId, invoiceStatus);
+        DatabaseInvoice.removeInvoiceByCustomerId(customerId);
         return result;
 
     }
@@ -146,7 +157,7 @@ public class InvoiceController {
             cashlessInvoice = new CashlessInvoice(DatabaseInvoice.getLastId()+1, newFood, DatabaseCustomer.getCustomerById(customerId), DatabasePromo.getPromoByCode(promoCode));
             cashlessInvoice.setTotalPrice();
             
-        } catch (CustomerNotFoundException e) {
+        } catch (CustomerNotFoundException | PromoNotFoundException e) {
             System.out.println(e);
         }
         try {

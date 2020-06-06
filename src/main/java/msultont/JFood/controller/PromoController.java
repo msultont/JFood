@@ -29,13 +29,19 @@ public class PromoController {
         return DatabasePromo.getPromoDatabase();
     }
 
-    @RequestMapping(value = "/{promoCode}", method = RequestMethod.GET)
+    @RequestMapping(value = "/code/{promoCode}", method = RequestMethod.GET)
     public Promo getPromoByCode(@PathVariable String promoCode) {
-        return DatabasePromo.getPromoByCode(promoCode);
+        Promo promo = null;
+        try {
+            promo = DatabasePromo.getPromoByCode(promoCode);
+        } catch (PromoNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
+        return promo;
     }
 
     @RequestMapping(value = "/addPromo", method = RequestMethod.POST)
-    public Promo addPromo(@RequestParam(value = "code") String code, 
+    public boolean addPromo(@RequestParam(value = "code") String code, 
                           @RequestParam(value = "discount") int discount, 
                           @RequestParam(value = "minPrice") int minPrice, 
                           @RequestParam(value = "active") boolean active) 
@@ -44,9 +50,22 @@ public class PromoController {
         try {
             DatabasePromo.addPromo(promo);
         } catch (PromoCodeAlreadyExistsException e) {
-            System.out.println(e);
+            System.err.println(e.getMessage());
+            return false;
         }
-        return promo;
+        return true;
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public boolean removePromo(@RequestParam(value = "promo_id") int promo_id) {
+        boolean sql_result = false;
+        try {
+            sql_result = DatabaseFood.removeFood(promo_id);
+        } catch (FoodNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
+        return sql_result;
+
     }
     
 }

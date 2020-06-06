@@ -11,6 +11,8 @@ public class DatabaseInvoice {
     // Global Variables
     private static ArrayList<Invoice> DATABASE_INVOICE = new ArrayList<>();
     private static ArrayList<Invoice> DATABASE_INVOICE_BY_CUSTOMER = new ArrayList<>();
+    private static ArrayList<Invoice> DATABASE_INVOICE_CANCELED = new ArrayList<>();
+    private static ArrayList<Invoice> DATABASE_INVOICE_FINISHED = new ArrayList<>();
     private static int lastId = 0;
 
     /**
@@ -19,6 +21,22 @@ public class DatabaseInvoice {
      */
     public static ArrayList<Invoice> getInvoiceDatabase() {
         return DATABASE_INVOICE;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public static ArrayList<Invoice> getInvoiceDatabaseCanceled() {
+        return DATABASE_INVOICE_CANCELED;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public static ArrayList<Invoice> getInvoiceDatabaseFinished() {
+        return DATABASE_INVOICE_FINISHED;
     }
 
     /**
@@ -103,6 +121,24 @@ public class DatabaseInvoice {
             }
         }
         throw new InvoiceNotFoundException(id);
+    }
+
+    /**
+     * 
+     * 
+     */
+    public static boolean removeInvoiceByCustomerId(int customer_id) {
+        for (Invoice invoice : DATABASE_INVOICE) {
+            if (invoice.getCustomer().getId()  == customer_id) {
+                if (invoice.getInvoiceStatus().equals(InvoiceStatus.CANCELED))
+                    DATABASE_INVOICE_CANCELED.add(invoice);
+                else
+                    DATABASE_INVOICE_FINISHED.add(invoice);
+                DATABASE_INVOICE.remove(invoice);
+                return true;
+            }
+        } 
+        return false;
     }
 
     /**

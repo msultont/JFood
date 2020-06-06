@@ -9,13 +9,21 @@ package msultont.JFood;
 
 @SuppressWarnings("serial")
 public class PromoNotFoundException extends Exception{
-    private int promo_error;
+    private String promo_error;
 
     /**
      * @param promo_input  promo id
      */
     public PromoNotFoundException(int promo_input) {
         super("Promo ID: ");
+        this.promo_error = String.valueOf(promo_input);
+    }
+
+    /**
+     * 
+     */
+    public PromoNotFoundException(String promo_input) {
+        super("Promo with code: ");
         this.promo_error = promo_input;
     }
 
