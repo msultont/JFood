@@ -22,7 +22,7 @@ public class CustomerController {
         return "Hello, you are in the customer page";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/listCustomer")
     public ArrayList<Customer> getAllCustomer() {
         return DatabaseCustomer.getCustomerDatabase();
     }

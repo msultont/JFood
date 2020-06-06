@@ -29,21 +29,25 @@ public class FoodController {
         return DatabaseFood.getFoodDatabase();
     }
 
-    @RequestMapping(value = "/FoodId{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Food getFoodById(@PathVariable int id) {
         Food food = null;
         try {
             food = DatabaseFood.getFoodById(id);
         } catch (FoodNotFoundException e) {
-            System.out.println(e);
+            System.err.println(e.getMessage());
         }
         return food;
     }
 
-    @RequestMapping(value = "/seller/SellerId{sellerId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/seller/{sellerId}", method = RequestMethod.GET)
     public ArrayList<Food> getFoodBySeller(@PathVariable int sellerId) {
         ArrayList<Food> foods = null;
-        foods = DatabaseFood.getFoodBySeller(sellerId);
+        try {
+            foods = DatabaseFood.getFoodBySeller(sellerId);
+        } catch (SellerNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
         return foods;
     }
 
@@ -53,7 +57,7 @@ public class FoodController {
     }
 
     @RequestMapping(value = "/addFood", method = RequestMethod.POST)
-    public Food addFood(@RequestParam(value = "name") String name, 
+    public boolean addFood(@RequestParam(value = "name") String name, 
                         @RequestParam(value = "price") int price, 
                         @RequestParam(value = "category") FoodCategory category, 
                         @RequestParam(value = "sellerId") int sellerId) 
@@ -61,11 +65,28 @@ public class FoodController {
         Food food = null;
         try {
             food = new Food(DatabaseFood.getLastId()+1, name, DatabaseSeller.getSellerById(sellerId), price, category);
-            DatabaseFood.addFood(food);
         } catch (SellerNotFoundException e) {
-            System.out.println(e);
+            System.err.println(e.getMessage());
         }
         
-        return food;
+        if (food != null) {
+            DatabaseFood.addFood(food);
+            return true;
+        }
+        
+        return false;
     }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public boolean removeFood(@RequestParam(value = "food_id") int food_id) {
+        boolean sql_result = false;
+        try {
+            sql_result = DatabaseFood.removeFood(food_id);
+        } catch (FoodNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
+        return sql_result;
+
+    }
+
 }
